@@ -1,0 +1,82 @@
+{
+  "restaurant": "Asia Elefant Schorndorf",
+  "currency": "EUR",
+  "contact": {
+    "phone": "07181 - 4826448",
+    "phone_link": "tel:071814826448"
+  },
+  "categories": [
+    {
+      "id": "sushi-bar",
+      "name": "Sushi Bar",
+      "description": "Frisch zubereitete Kunstwerke aus unserer Sushi-Manufaktur.",
+      "items": [
+        {
+          "id": "rainbow-roll",
+          "item_number": "1",
+          "number_prefix": "S",
+          "name": "Rainbow Roll",
+          "description": "Fresh Salmon, Tuna, Avocado over California Roll with signature soy glaze.",
+          "price": 12.00,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": ["GF"],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": true
+          }
+        },
+        {
+          "id": "sashimi-moriawase",
+          "item_number": "2",
+          "number_prefix": "S",
+          "name": "Sashimi Moriawase",
+          "description": "Chef's selection of 12 pieces premium seasonal raw fish, freshly grated wasabi.",
+          "price": 24.50,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": ["GF"],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "wok-specialties",
+      "name": "Wok Specialties",
+      "description": "Authentische Aromen Asiens, im Wok auf den Punkt gegart.",
+      "items": [
+        {
+          "id": "crispy-chicken-sweet-sour",
+          "item_number": "24",
+          "name": "Crispy Chicken Sweet & Sour",
+          "description": "Breaded chicken breast pieces with bell peppers, pineapple, and our house sweet & sour sauce.",
+          "price": 14.50,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": [],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": false
+          }
+        },
+        {
+          "id": "szechuan-beef",
+          "item_number": "25",
+          "name": "Szechuan Beef",
+          "description": "Tender beef slices wok-tossed with broccoli, garlic, and a rich dark soy-ginger reduction.",
+          "price": 16.50,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": ["SPICY"],
+          "attributes": {
+            "is_spicy": true,
+            "is_vegan": false,
+            "is_gluten_free": false
+          }
+        }
+      ]
+    }
+  ]
+}

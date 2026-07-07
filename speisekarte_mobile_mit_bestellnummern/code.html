@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Speisekarte | Asia Elefant Schorndorf</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#1b1c19",
+                    "surface-dim": "#131411",
+                    "secondary-container": "#604403",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "on-primary-container": "#7e7d7d",
+                    "secondary-fixed": "#ffdea5",
+                    "inverse-primary": "#5f5e5e",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "primary": "#c8c6c5",
+                    "surface-bright": "#393936",
+                    "on-primary-fixed-variant": "#474646",
+                    "on-secondary": "#412d00",
+                    "on-tertiary-fixed-variant": "#5c4217",
+                    "on-secondary-container": "#dab36a",
+                    "on-primary": "#313030",
+                    "surface-container": "#1f201d",
+                    "primary-fixed": "#e5e2e1",
+                    "primary-container": "#121212",
+                    "outline": "#8e9192",
+                    "on-error": "#690005",
+                    "tertiary-fixed": "#ffddb0",
+                    "surface-container-highest": "#343532",
+                    "on-secondary-fixed": "#261900",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface": "#131411",
+                    "surface-tint": "#c8c6c5",
+                    "background": "#131411",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#281800",
+                    "on-surface-variant": "#c4c7c7",
+                    "on-surface": "#e4e2dd",
+                    "error-container": "#93000a",
+                    "inverse-surface": "#e4e2dd",
+                    "surface-container-lowest": "#0e0e0c",
+                    "inverse-on-surface": "#30312e",
+                    "secondary-fixed-dim": "#e9c176",
+                    "secondary": "#e9c176",
+                    "surface-container-high": "#2a2a27",
+                    "on-tertiary": "#432c03",
+                    "on-background": "#e4e2dd",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed-dim": "#e7c08a",
+                    "tertiary-container": "#1c1000",
+                    "tertiary": "#e7c08a",
+                    "on-tertiary-container": "#987848",
+                    "surface-variant": "#343532",
+                    "outline-variant": "#444748"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-columns": "12",
+                    "container-padding": "24px",
+                    "gutter": "16px",
+                    "section-gap": "80px",
+                    "max-width": "1200px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Newsreader"],
+                    "headline-md": ["Newsreader"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Newsreader"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Newsreader"],
+                    "label-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .active-tab { color: #e9c176; border-bottom: 2px solid #e9c176; }
+        .glass-header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .elephant-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(140, 109, 62, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary/30 elephant-pattern">
+<!-- Mobile Header -->
+<header class="fixed top-0 left-0 right-0 z-50 glass-header bg-background/80 border-b border-outline-variant/30 px-container-padding py-4 h-20 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<img alt="Asia Elefant Logo" class="h-12 w-auto" src="https://lh3.googleusercontent.com/aida/AP1WRLsrz-OECOdXBDvsxzikH-g9tFd7ESFrmORheWTH1T3nbNRsYxylus9Ay0kxJzuNoQYtivHJcyhh4uklarnYYaKIKcfOmQfMlLPOTdHyqR9_YLjMP_mqqzEeshp6sXBSL5NVycWj5rwRdnRd1x77Pg2LzKMZZ2-A3rSCOSpgQye4SHvhmR4SKmk4dktoMUpY22lW_BiYlXNtT5qMRsUgZtcnMn80eLPSbGUsu90Y3hn4mR3orrkh24RO2KA"/>
+<h1 class="font-headline-sm text-headline-sm text-secondary tracking-tight">Asia Elefant</h1>
+</div>
+<button class="text-on-surface p-2">
+<span class="material-symbols-outlined text-[32px]">menu</span>
+</button>
+</header>
+<!-- Search and Categories Sticky Bar -->
+<div class="pt-24 px-container-padding">
+<!-- Search Bar -->
+<div class="relative mb-6">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-b border-outline-variant py-4 pl-12 pr-4 focus:outline-none focus:border-secondary transition-all font-body-md text-on-surface placeholder:text-on-surface-variant" placeholder="Suche in der Speisekarte..." type="text"/>
+</div>
+<!-- Horizontal Category Scroll -->
+<div class="flex overflow-x-auto no-scrollbar gap-6 border-b border-outline-variant/20 mb-8 sticky top-20 bg-background z-40 py-2">
+<button class="whitespace-nowrap font-label-md text-label-md pb-2 border-b-2 border-secondary text-secondary">Sushi Bar</button>
+<button class="whitespace-nowrap font-label-md text-label-md pb-2 border-b-2 border-transparent text-on-surface-variant hover:text-secondary transition-colors">Wok Specialties</button>
+<button class="whitespace-nowrap font-label-md text-label-md pb-2 border-b-2 border-transparent text-on-surface-variant hover:text-secondary transition-colors">Dim Sum</button>
+<button class="whitespace-nowrap font-label-md text-label-md pb-2 border-b-2 border-transparent text-on-surface-variant hover:text-secondary transition-colors">Bowls</button>
+<button class="whitespace-nowrap font-label-md text-label-md pb-2 border-b-2 border-transparent text-on-surface-variant hover:text-secondary transition-colors">Desserts</button>
+</div>
+</div>
+<!-- Menu List -->
+<main class="px-container-padding pb-32"><div class="mb-8">
+<a class="flex items-center justify-center gap-3 w-full bg-secondary text-on-secondary py-4 rounded-lg font-bold shadow-lg active:scale-95 transition-transform" href="tel:071814826448">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-md">ANRUFEN &amp; BESTELLEN: 07181 - 4826448</span>
+</a>
+</div>
+<div class="mb-10">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Sushi Bar</h2>
+<p class="font-body-md text-on-surface-variant text-sm">Frisch zubereitete Kunstwerke aus unserer Sushi-Manufaktur.</p>
+</div>
+<section class="flex flex-col gap-8">
+<!-- Menu Item 1 -->
+<div class="group border-b border-outline-variant/20 pb-8 last:border-0">
+<div class="relative w-full aspect-[16/10] overflow-hidden mb-4 rounded-lg">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A premium close-up of a dragon roll sushi platter at a high-end Asian restaurant. The sushi is expertly plated on a dark slate board, featuring avocado slices, unagi, and gold leaf accents. The lighting is dramatic and moody, with high contrast, creating a sense of quiet luxury and authentic craftsmanship. The background is a soft-focus deep charcoal, highlighting the vibrant oranges and greens of the fresh ingredients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLhnz2m8MzQY_aU-IYqyhDtAmsL14O0yfR4m-o0g_jze6csaPhin53L82f1YHabh3_Fvk3vp3s3jIRK218fiP12I6xnUq80FcoSLyNjB3ZKXSRM7avhbSzMWIPmoKm7g0KzsqF_JHAtpll-UsQ7_SAX_mIuvh2x1q8FWkTLYCr8mJ701C1cKWZQqIGpnI27ApYdjc93te39p9-3N1MZBbda-lK8S0pmJJtSm9f5jZzhGV8uoEkAnCZ4L1n3Qi-3j04C1X1xZ7I431t"/>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="bg-secondary/20 backdrop-blur-md text-secondary px-3 py-1 text-[10px] font-label-md rounded-full border border-secondary/30">CHEF'S CHOICE</span>
+</div>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface"><span class="text-secondary/60 mr-2">#S1</span>Golden Dragon Roll</h3>
+<span class="text-secondary font-headline-sm text-headline-sm">18,50 €</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 leading-relaxed">Garnelen Tempura, Gurke, belegt mit feinstem Unagi und Avocado, abgerundet mit würziger Kabayaki-Sauce und Goldstaub.</p>
+<div class="flex flex-wrap gap-3">
+<span class="text-[10px] font-label-md text-on-tertiary-fixed-variant bg-tertiary-fixed/10 px-2 py-0.5 rounded border border-tertiary-fixed/20">GLUTENFREI OPTION</span>
+<span class="text-[10px] font-label-md text-secondary bg-secondary/10 px-2 py-0.5 rounded border border-secondary/20 uppercase tracking-widest">Scharf</span>
+</div>
+</div>
+<!-- Menu Item 2 -->
+<div class="group border-b border-outline-variant/20 pb-8 last:border-0">
+<div class="relative w-full aspect-[16/10] overflow-hidden mb-4 rounded-lg">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Exquisite plate of Sashimi Moriawase featuring premium slices of tuna, salmon, and yellowtail. Plated on an artisanal ceramic dish with daikon radish and shiso leaves. Dark minimalist background, top-down perspective, warm saffron lighting, high-end hospitality aesthetic, serene atmosphere, sharp focus on the texture of the raw fish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCraaolX_sFqhsH9RDERN-jTmrz7MZFcNA8guVh5cy5X0iHLZvdBuS_NukLGKKPKWs-OqBcwPmiLSqKOm3KUYj_xYeCG2V1XsDpVlPc7zRO27mxuVuLSIgFleNji9TWPEPh0QHNhoQr-qWXI2AQJ1GBJy8RUFeJm0TQ6d4PahkgJ4WhXlY-1xgRV04-1le_Ky_VX2VSWw3DEKCeK7tcSHYh99q1UpsPka8G1Z6VQOFCsNNh57fbj5igzGwmMtgowsNSWBtmqnLB_suB"/>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface"><span class="text-secondary/60 mr-2">#S2</span>Sashimi Moriawase</h3>
+<span class="text-secondary font-headline-sm text-headline-sm">24,00 €</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 leading-relaxed">Variation vom Chef: 9 Scheiben feinster roher Fisch (Lachs, Thunfisch, Gelbschwanzmakrele) serviert mit echtem Wasabi.</p>
+<div class="flex flex-wrap gap-3">
+<span class="text-[10px] font-label-md text-on-tertiary-fixed-variant bg-tertiary-fixed/10 px-2 py-0.5 rounded border border-tertiary-fixed/20">LOW CARB</span>
+</div>
+</div>
+<!-- Menu Item 3 -->
+<div class="group border-b border-outline-variant/20 pb-8 last:border-0">
+<div class="relative w-full aspect-[16/10] overflow-hidden mb-4 rounded-lg">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A vibrant vegan poke bowl with marinated tofu, edamame, seaweed salad, and pickled ginger on a bed of purple rice. The styling is modern and minimalist, shot in a high-contrast charcoal setting with warm spotlighting. The colors of the fresh vegetables pop against the dark ceramic bowl, evoking a sense of healthy high-end dining." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6paWXxsDNB-7kVE9mSWIUfX7juepUS8v2VZLZ9sNunHnj4LJI-qr2d0WnbA-Sc1Cszojc0ex0vCqXJTaaKcYUnZZohGSPhEbXbUhunshg8cLO8VlUAsdufDeVt8qvN87OWEcAy3EX6aThkUDgBk_dTj3HadxJpTJDwiSHvBT66iOCYIvxPrUyrWdqZOJPRvRqRmn_RVpRUY0j09Yuo-QFUyihcvhUKYdWffYBMk4QSyR0c2hi5ukCy4LIGLQAH0wkejyLYsqY78pt"/>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="bg-surface-container-highest/60 backdrop-blur-md text-on-surface px-3 py-1 text-[10px] font-label-md rounded-full border border-outline-variant/30">VEGAN</span>
+</div>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface"><span class="text-secondary/60 mr-2">#24</span>Tofu Zen Bowl</h3>
+<span class="text-secondary font-headline-sm text-headline-sm">16,50 €</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 leading-relaxed">Marinierter Bio-Tofu, Edamame, Wakame, Avocado und Mango auf violettem Klebreis mit Sesam-Limetten-Dressing.</p>
+<div class="flex flex-wrap gap-3">
+<span class="text-[10px] font-label-md text-on-tertiary-fixed-variant bg-tertiary-fixed/10 px-2 py-0.5 rounded border border-tertiary-fixed/20 uppercase tracking-widest">Vegan</span>
+</div>
+</div>
+</section>
+<!-- Decorative Motif -->
+<div class="flex justify-center py-12">
+<span class="text-surface-container-highest/40 font-display-lg text-4xl">❈</span>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Contextual for Mobile) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest glass-header border-t border-outline-variant/10 px-container-padding h-20 flex justify-between items-center md:hidden">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-[10px]">HOME</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-secondary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+<span class="font-label-sm text-[10px] font-bold">MENU</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-secondary" href="tel:071814826448">
+<span class="material-symbols-outlined">call</span>
+<span class="font-label-sm text-[10px] font-bold">ANRUFEN</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">info</span>
+<span class="font-label-sm text-[10px]">INFO</span>
+</a>
+</nav>
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10 py-12 px-container-padding mb-20">
+<div class="flex flex-col items-center text-center">
+<img alt="Logo Footer" class="h-10 opacity-60 mb-6 grayscale brightness-150" src="https://lh3.googleusercontent.com/aida/AP1WRLsrz-OECOdXBDvsxzikH-g9tFd7ESFrmORheWTH1T3nbNRsYxylus9Ay0kxJzuNoQYtivHJcyhh4uklarnYYaKIKcfOmQfMlLPOTdHyqR9_YLjMP_mqqzEeshp6sXBSL5NVycWj5rwRdnRd1x77Pg2LzKMZZ2-A3rSCOSpgQye4SHvhmR4SKmk4dktoMUpY22lW_BiYlXNtT5qMRsUgZtcnMn80eLPSbGUsu90Y3hn4mR3orrkh24RO2KA"/>
+<h4 class="font-headline-sm text-on-surface mb-4">Asia Elefant Schorndorf</h4>
+<p class="text-on-surface-variant text-sm mb-8 max-w-[280px]">Tradition trifft Moderne. Ein kulinarisches Erlebnis im Herzen von Schorndorf.</p>
+<div class="flex gap-8 mb-12">
+<a class="text-secondary" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="text-secondary" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="text-secondary" href="#"><span class="material-symbols-outlined">location_on</span></a>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-50">© 2024 Asia Elefant Schorndorf. All rights reserved.</p>
+</div>
+</footer>
+<script>
+        // Simple Interaction for Tabs
+        const tabs = document.querySelectorAll('.no-scrollbar button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('active-tab', 'text-secondary', 'border-secondary');
+                    t.classList.add('border-transparent', 'text-on-surface-variant');
+                });
+                tab.classList.add('active-tab', 'text-secondary', 'border-secondary');
+                tab.classList.remove('border-transparent', 'text-on-surface-variant');
+            });
+        });
+
+        // Search highlight interaction
+        const searchInput = document.querySelector('input');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('border-secondary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('border-secondary');
+        });
+    </script>
+</body></html>
