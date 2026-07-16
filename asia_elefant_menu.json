@@ -12,8 +12,8 @@
       "description": "Frisch zubereitete Kunstwerke aus unserer Sushi-Manufaktur.",
       "items": [
         {
-          "id": "rainbow-roll",
-          "item_number": "1",
+          "id": "rainbow-roll1",
+          "item_number": "111",
           "number_prefix": "S",
           "name": "Rainbow Roll",
           "description": "Fresh Salmon, Tuna, Avocado over California Roll with signature soy glaze.",
@@ -27,8 +27,68 @@
           }
         },
         {
-          "id": "sashimi-moriawase",
-          "item_number": "2",
+          "id": "sashimi-moriawase1",
+          "item_number": "211",
+          "number_prefix": "S",
+          "name": "Sashimi Moriawase",
+          "description": "Chef's selection of 12 pieces premium seasonal raw fish, freshly grated wasabi.",
+          "price": 24.5,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": ["GF"],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": true
+          }
+        },
+        {
+          "id": "rainbow-roll2",
+          "item_number": "122",
+          "number_prefix": "S",
+          "name": "Rainbow Roll",
+          "description": "Fresh Salmon, Tuna, Avocado over California Roll with signature soy glaze.",
+          "price": 12.0,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": ["GF"],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": true
+          }
+        },
+        {
+          "id": "sashimi-moriawase2",
+          "item_number": "222",
+          "number_prefix": "S",
+          "name": "Sashimi Moriawase",
+          "description": "Chef's selection of 12 pieces premium seasonal raw fish, freshly grated wasabi.",
+          "price": 24.5,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": ["GF"],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": true
+          }
+        },
+        {
+          "id": "rainbow-roll3",
+          "item_number": "133",
+          "number_prefix": "S",
+          "name": "Rainbow Roll",
+          "description": "Fresh Salmon, Tuna, Avocado over California Roll with signature soy glaze.",
+          "price": 12.0,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": ["GF"],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": true
+          }
+        },
+        {
+          "id": "sashimi-moriawase3",
+          "item_number": "233",
           "number_prefix": "S",
           "name": "Sashimi Moriawase",
           "description": "Chef's selection of 12 pieces premium seasonal raw fish, freshly grated wasabi.",
@@ -49,8 +109,64 @@
       "description": "Hänchen gerichte",
       "items": [
         {
-          "id": "chicken-box",
+          "id": "chicken-box0",
           "item_number": "44",
+          "name": "chicken box",
+          "description": "Hähnchenbrustfilet in knuspriger Panade mit Paprika, Ananas und unserer hausgemachten süß-sauren Sauce.",
+          "price": 9.5,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": [],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": false
+          }
+        },
+        {
+          "id": "chicken-box1",
+          "item_number": "45",
+          "name": "chicken box",
+          "description": "Hähnchenbrustfilet in knuspriger Panade mit Paprika, Ananas und unserer hausgemachten süß-sauren Sauce.",
+          "price": 9.5,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": [],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": false
+          }
+        },
+        {
+          "id": "chicken-box2",
+          "item_number": "46",
+          "name": "chicken box",
+          "description": "Hähnchenbrustfilet in knuspriger Panade mit Paprika, Ananas und unserer hausgemachten süß-sauren Sauce.",
+          "price": 9.5,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": [],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": false
+          }
+        },
+        {
+          "id": "chicken-box3",
+          "item_number": "47",
+          "name": "chicken box",
+          "description": "Hähnchenbrustfilet in knuspriger Panade mit Paprika, Ananas und unserer hausgemachten süß-sauren Sauce.",
+          "price": 9.5,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": [],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": false
+          }
+        },
+        {
+          "id": "chicken-box4",
+          "item_number": "48",
           "name": "chicken box",
           "description": "Hähnchenbrustfilet in knuspriger Panade mit Paprika, Ananas und unserer hausgemachten süß-sauren Sauce.",
           "price": 9.5,

@@ -22,6 +22,10 @@ const copy = {
     serviceText: 'Anrufen & abholen',
     menuKicker: 'Speisekarte / Menu',
     menuHeading: 'Gerichte entdecken',
+    gridSizeLabel: 'Raster',
+    gridSizeCompact: 'Klein',
+    gridSizeStandard: 'Mittel',
+    gridSizeLarge: 'Gross',
     searchLabel: 'Speisekarte durchsuchen',
     searchPlaceholder: 'Suche',
     emptyTitle: 'Keine Treffer',
@@ -75,6 +79,10 @@ const copy = {
     serviceText: 'Call & collect',
     menuKicker: 'Menu / Speisekarte',
     menuHeading: 'Browse dishes',
+    gridSizeLabel: 'Grid',
+    gridSizeCompact: 'Small',
+    gridSizeStandard: 'Medium',
+    gridSizeLarge: 'Large',
     searchLabel: 'Search menu',
     searchPlaceholder: 'Search',
     emptyTitle: 'No matches',
@@ -108,12 +116,18 @@ const copy = {
   },
 };
 
+const GRID_SIZE_OPTIONS = ['compact', 'standard', 'large'];
+const DEFAULT_GRID_SIZE = 'standard';
+const GRID_SIZE_STORAGE_KEY = 'asia-elefant-grid-size';
+
 const state = {
   activeCategory: 'all',
+  gridSize: DEFAULT_GRID_SIZE,
   language: 'de',
   searchQuery: '',
 };
 
+let menuData;
 const nodes = {};
 
 function escapeHtml(value) {
@@ -134,6 +148,53 @@ function getCopy(key) {
   return copy[state.language]?.[key] ?? copy.de[key] ?? key;
 }
 
+function gridSizeOrDefault(value) {
+  return GRID_SIZE_OPTIONS.includes(value) ? value : DEFAULT_GRID_SIZE;
+}
+
+function readStoredGridSize() {
+  try {
+    return gridSizeOrDefault(localStorage.getItem(GRID_SIZE_STORAGE_KEY));
+  } catch (error) {
+    return DEFAULT_GRID_SIZE;
+  }
+}
+
+function storeGridSize(gridSize) {
+  try {
+    localStorage.setItem(GRID_SIZE_STORAGE_KEY, gridSize);
+  } catch (error) {
+    console.warn('Grid size preference could not be stored:', error);
+  }
+}
+
+function updateMenuGridSize() {
+  if (nodes.menuGrid) {
+    nodes.menuGrid.dataset.gridSize = state.gridSize;
+  }
+}
+
+function syncGridSizeControls() {
+  updateMenuGridSize();
+  document.querySelectorAll('button[data-grid-size]').forEach((button) => {
+    const isActive = button.dataset.gridSize === state.gridSize;
+    button.classList.toggle('is-active', isActive);
+    button.setAttribute('aria-pressed', String(isActive));
+  });
+}
+
+function setGridSize(gridSize) {
+  const nextGridSize = gridSizeOrDefault(gridSize);
+  if (state.gridSize === nextGridSize) {
+    syncGridSizeControls();
+    return;
+  }
+
+  state.gridSize = nextGridSize;
+  storeGridSize(nextGridSize);
+  syncGridSizeControls();
+}
+
 function getCategories(data) {
   return Array.isArray(data?.categories) ? data.categories : [];
 }
@@ -145,10 +206,6 @@ function getAllItems(data) {
 }
 
 async function loadMenuData() {
-  if (window.location.protocol === 'file:') {
-    return embeddedMenuData;
-  }
-
   try {
     const response = await fetch(MENU_DATA_URL, { cache: 'no-store' });
     if (!response.ok) {
@@ -158,8 +215,9 @@ async function loadMenuData() {
     }
     return await response.json();
   } catch (error) {
-    console.warn('Falling back to embedded menu data:', error);
-    return embeddedMenuData;
+    throw new Error(
+      `Menue-Daten konnten nicht geladen werden. Bitte die Seite ueber einen Webserver oeffnen und ${MENU_DATA_URL} bereitstellen. (${error.message})`,
+    );
   }
 }
 
@@ -356,7 +414,7 @@ function renderMenuItem(item, category) {
   const placeholderLabel = `${category.name}: ${item.name} Bildplatzhalter / image placeholder`;
   return `
         <article class="menu-card group flex min-h-full flex-col overflow-hidden" data-menu-item="${escapeHtml(item.id)}">
-          <div class="dish-placeholder relative flex aspect-[16/10] items-end p-4" role="img" aria-label="${escapeHtml(placeholderLabel)}">
+          <div class="menu-card-media dish-placeholder relative flex aspect-[16/10] items-end p-4" role="img" aria-label="${escapeHtml(placeholderLabel)}">
             <div class="rounded-md border border-secondary/20 bg-background/78 px-3 py-2 glass-header">
               <p class="text-xs font-bold text-secondary">${escapeHtml(category.name)}</p>
               <p class="text-sm text-on-surface-variant">${escapeHtml(number)} · ${state.language === 'de' ? 'Bild folgt' : 'Image pending'}</p>
@@ -369,7 +427,7 @@ function renderMenuItem(item, category) {
               </h3>
               <p class="shrink-0 font-headline-sm text-xl text-secondary">${escapeHtml(formatPrice(item.price, menuData.currency))}</p>
             </div>
-            <p class="mt-4 flex-1 text-sm leading-6 text-on-surface-variant">${escapeHtml(item.description)}</p>
+            <p class="menu-card-description mt-4 flex-1 text-sm leading-6 text-on-surface-variant">${escapeHtml(item.description)}</p>
             <div class="mt-5 flex min-h-7 flex-wrap gap-2" aria-label="Tags / dietary notes">
               ${tags}
             </div>
@@ -391,7 +449,7 @@ function renderCategory(category) {
             </div>
             <p class="text-sm font-bold text-secondary">${safeItems.length} ${state.language === 'de' ? 'Gerichte' : 'dishes'}</p>
           </div>
-          <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div class="menu-items-grid">
             ${safeItems.map((item) => renderMenuItem(item, category)).join('')}
           </div>
         </section>`;
@@ -415,6 +473,7 @@ function renderMenu(data) {
     })
     .join('');
 
+  updateMenuGridSize();
   nodes.menuGrid.innerHTML = sections;
   nodes.menuGrid.setAttribute('aria-busy', 'false');
   nodes.emptyState.classList.toggle('hidden', visibleCount !== 0);
@@ -503,6 +562,7 @@ function updateStaticCopy() {
     button.classList.toggle('is-active', isActive);
     button.setAttribute('aria-pressed', String(isActive));
   });
+  syncGridSizeControls();
   updatePhoneActions();
   renderCategoryControls(menuData);
   renderMenu(menuData);
@@ -564,6 +624,7 @@ function cacheNodes() {
 
 async function init() {
   cacheNodes();
+  state.gridSize = readStoredGridSize();
   menuData = await loadMenuData();
 
   assertValidMenuData(menuData);
@@ -573,6 +634,11 @@ async function init() {
   document.querySelectorAll('[data-language]').forEach((button) => {
     button.addEventListener('click', () =>
       setLanguage(button.dataset.language),
+    );
+  });
+  document.querySelectorAll('button[data-grid-size]').forEach((button) => {
+    button.addEventListener('click', () =>
+      setGridSize(button.dataset.gridSize),
     );
   });
 }

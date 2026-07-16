@@ -84,7 +84,69 @@ body {
   border-radius: 8px;
 }
 
+#menu-grid {
+  --menu-card-min: 280px;
+  --menu-card-max: 320px;
+  --menu-card-gap: 20px;
+  --menu-card-padding: 24px;
+  --menu-image-min: 184px;
+  --menu-card-title-size: 24px;
+}
+
+#menu-grid[data-grid-size='compact'] {
+  --menu-card-min: 220px;
+  --menu-card-gap: 16px;
+  --menu-card-max: 248px;
+  --menu-card-padding: 18px;
+  --menu-image-min: 136px;
+  --menu-card-title-size: 20px;
+}
+
+#menu-grid[data-grid-size='large'] {
+  --menu-card-min: 360px;
+  --menu-card-gap: 24px;
+  --menu-card-padding: 28px;
+  --menu-card-max: 430px;
+  --menu-image-min: 220px;
+  --menu-card-title-size: 27px;
+}
+
+.menu-items-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--menu-card-min), var(--menu-card-max))
+  );
+  gap: var(--menu-card-gap);
+  justify-content: start;
+}
+
+.menu-card > .flex-1 {
+  padding: var(--menu-card-padding);
+}
+
+.menu-card h3 {
+  font-size: var(--menu-card-title-size);
+}
+
+#menu-grid[data-grid-size='standard'] .menu-card-description,
+#menu-grid[data-grid-size='compact'] .menu-card-description {
+  display: none;
+}
+
+#menu-grid[data-grid-size='compact'] .menu-card-media {
+  display: none;
+}
+
+#menu-grid[data-grid-size='compact'] .menu-card {
+  min-height: auto;
+}
+
+#menu-grid[data-grid-size='compact'] .tag-chip {
+  min-height: 24px;
+}
 .category-filter,
+.grid-size-button,
 .language-button {
   border: 1px solid transparent;
   border-radius: 6px;
@@ -96,6 +158,7 @@ body {
 }
 
 .category-filter:hover,
+.grid-size-button:hover,
 .language-button:hover {
   color: var(--gold-soft);
   border-color: rgba(233, 193, 118, 0.32);
@@ -103,6 +166,7 @@ body {
 }
 
 .category-filter.is-active,
+.grid-size-button.is-active,
 .language-button.is-active {
   color: #261900;
   background: var(--gold);
@@ -127,7 +191,7 @@ body {
 }
 
 .dish-placeholder {
-  min-height: 184px;
+  min-height: var(--menu-image-min);
   border-bottom: 1px solid rgba(233, 193, 118, 0.16);
   background:
     linear-gradient(135deg, rgba(233, 193, 118, 0.18), transparent 42%),
@@ -174,6 +238,10 @@ body {
     padding-top: var(--header-height);
     padding-bottom: 88px;
   }
+  .menu-items-grid {
+    grid-template-columns: 1fr;
+  }
+
 
   .menu-card:hover {
     transform: none;
