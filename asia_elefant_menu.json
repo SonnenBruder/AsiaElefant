@@ -17,7 +17,7 @@
           "number_prefix": "S",
           "name": "Rainbow Roll",
           "description": "Fresh Salmon, Tuna, Avocado over California Roll with signature soy glaze.",
-          "price": 12.00,
+          "price": 12.0,
           "image_url": "{{DATA:IMAGE:IMAGE_N}}",
           "tags": ["GF"],
           "attributes": {
@@ -32,13 +32,34 @@
           "number_prefix": "S",
           "name": "Sashimi Moriawase",
           "description": "Chef's selection of 12 pieces premium seasonal raw fish, freshly grated wasabi.",
-          "price": 24.50,
+          "price": 24.5,
           "image_url": "{{DATA:IMAGE:IMAGE_N}}",
           "tags": ["GF"],
           "attributes": {
             "is_spicy": false,
             "is_vegan": false,
             "is_gluten_free": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "Hänchen",
+      "name": "Chicken",
+      "description": "Hänchen gerichte",
+      "items": [
+        {
+          "id": "chicken-box",
+          "item_number": "44",
+          "name": "chicken box",
+          "description": "Hähnchenbrustfilet in knuspriger Panade mit Paprika, Ananas und unserer hausgemachten süß-sauren Sauce.",
+          "price": 9.5,
+          "image_url": "{{DATA:IMAGE:IMAGE_N}}",
+          "tags": [],
+          "attributes": {
+            "is_spicy": false,
+            "is_vegan": false,
+            "is_gluten_free": false
           }
         }
       ]
@@ -53,7 +74,7 @@
           "item_number": "24",
           "name": "Crispy Chicken Sweet & Sour",
           "description": "Breaded chicken breast pieces with bell peppers, pineapple, and our house sweet & sour sauce.",
-          "price": 14.50,
+          "price": 14.5,
           "image_url": "{{DATA:IMAGE:IMAGE_N}}",
           "tags": [],
           "attributes": {
@@ -67,7 +88,7 @@
           "item_number": "25",
           "name": "Szechuan Beef",
           "description": "Tender beef slices wok-tossed with broccoli, garlic, and a rich dark soy-ginger reduction.",
-          "price": 16.50,
+          "price": 16.5,
           "image_url": "{{DATA:IMAGE:IMAGE_N}}",
           "tags": ["SPICY"],
           "attributes": {

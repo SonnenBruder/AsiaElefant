@@ -1,4 +1,4 @@
-const MENU_DATA_URL = 'asia_elefant_menu_json_updated_with_numbers.json';
+const MENU_DATA_URL = 'asia_elefant_menu.json';
 
 const copy = {
   de: {
@@ -23,7 +23,7 @@ const copy = {
     menuKicker: 'Speisekarte / Menu',
     menuHeading: 'Gerichte entdecken',
     searchLabel: 'Speisekarte durchsuchen',
-    searchPlaceholder: 'Suche nach Gericht, Nummer oder Tag...',
+    searchPlaceholder: 'Suche',
     emptyTitle: 'Keine Treffer',
     emptyText: 'Passe Suche oder Kategorie an.',
     infoKicker: 'Restaurantinfo / Restaurant Info',
@@ -76,7 +76,7 @@ const copy = {
     menuKicker: 'Menu / Speisekarte',
     menuHeading: 'Browse dishes',
     searchLabel: 'Search menu',
-    searchPlaceholder: 'Search by dish, number or tag...',
+    searchPlaceholder: 'Search',
     emptyTitle: 'No matches',
     emptyText: 'Adjust the search or category filter.',
     infoKicker: 'Restaurant Info / Restaurantinfo',
