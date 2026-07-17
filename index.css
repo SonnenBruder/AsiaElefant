@@ -191,6 +191,20 @@ body {
   text-shadow: 0 3px 24px rgba(0, 0, 0, 0.46);
 }
 
+.restaurant-hero__development-notice {
+  width: fit-content;
+  margin: 14px 0 0;
+  border: 1px solid var(--danger);
+  border-radius: 4px;
+  background: rgba(255, 180, 171, 0.1);
+  color: var(--danger);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+  padding: 7px 10px;
+}
+
 .restaurant-hero__subtitle {
   max-width: 640px;
   margin: 22px 0 0;

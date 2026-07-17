@@ -32,6 +32,7 @@ export const translations = {
         : `${itemName} entfernt`,
     heroKicker: 'Sushi / Wok / Asiatische Küche',
     heroTitle: 'Asia Elefant Schorndorf',
+    heroTitleSecondary: 'Derzeit in Entwicklung',
     heroSubtitle:
       'Sushi, Wok und asiatische Lieblingsgerichte - frisch zubereitet in Schorndorf.',
     heroSubtitleSecondary:
@@ -124,6 +125,7 @@ export const translations = {
         : `${itemName} removed`,
     heroKicker: 'Sushi / Wok / Asian cuisine',
     heroTitle: 'Asia Elefant Schorndorf',
+    heroTitleSecondary: 'Currently in development',
     heroSubtitle:
       'Fresh sushi, wok dishes and Asian favorites, prepared locally in Schorndorf.',
     heroSubtitleSecondary:
