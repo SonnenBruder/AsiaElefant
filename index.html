@@ -309,6 +309,50 @@
         <div
           class="menu-toolbar sticky z-30 -mx-container-padding mb-9 border-y border-secondary/10 bg-background/95 px-container-padding py-4 glass-header md:rounded-lg md:border md:border-secondary/15"
         >
+          <div class="menu-toolbar__bar">
+            <button
+              id="menu-toolbar-toggle"
+              class="menu-toolbar__toggle focus-ring"
+              type="button"
+              aria-controls="menu-toolbar-controls"
+              aria-expanded="true"
+            >
+              <span class="material-symbols-outlined" aria-hidden="true"
+                >tune</span
+              >
+              <span data-i18n="menuToolsToggle">Suche & Filter</span>
+              <span
+                class="material-symbols-outlined menu-toolbar__chevron"
+                aria-hidden="true"
+                >expand_less</span
+              >
+            </button>
+            <div class="menu-toolbar__summary" aria-live="polite">
+              <span class="menu-toolbar__summary-chip">
+                <span
+                  class="material-symbols-outlined"
+                  aria-hidden="true"
+                  >search</span
+                >
+                <span id="menu-search-summary" class="menu-toolbar__summary-text"
+                  >Keine Suche</span
+                >
+              </span>
+              <span class="menu-toolbar__summary-chip">
+                <span
+                  class="material-symbols-outlined"
+                  aria-hidden="true"
+                  >filter_alt</span
+                >
+                <span
+                  id="menu-category-summary"
+                  class="menu-toolbar__summary-text"
+                  >Alle / All</span
+                >
+              </span>
+            </div>
+          </div>
+          <div id="menu-toolbar-controls" class="menu-toolbar__controls">
           <div
             class="grid gap-4 lg:grid-cols-[minmax(240px,360px)_1fr] lg:items-center"
           >
@@ -411,6 +455,7 @@
           </div>
         </div>
 
+          </div>
         <noscript>
           <div class="surface-panel mb-8 p-6" role="status">
             <h3 class="font-headline-sm text-headline-sm text-on-surface">

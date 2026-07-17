@@ -42,49 +42,92 @@ const state = {
 let menuData;
 let orderDialogOpener;
 let orderCopyFeedbackTimer;
-let mobileMenuMode;
-let mobileMenuSyncFrame;
+let menuSectionMode;
+let menuScrollSyncFrame;
+let menuToolbarCollapsed = false;
+let menuToolbarUserCollapsed;
 const nodes = {};
 
-function getDocumentOffsetTop(element) {
-  let documentOffsetTop = 0;
-  let currentElement = element;
-
-  while (currentElement) {
-    documentOffsetTop += currentElement.offsetTop;
-    currentElement = currentElement.offsetParent;
-  }
-
-  return documentOffsetTop;
+function setMenuToolbarCollapsed(collapsed) {
+  menuToolbarCollapsed = Boolean(collapsed);
+  nodes.menuToolbar.classList.toggle('is-collapsed', menuToolbarCollapsed);
+  nodes.menuToolbarControls.hidden = menuToolbarCollapsed;
+  nodes.menuToolbarToggle.setAttribute(
+    'aria-expanded',
+    String(!menuToolbarCollapsed),
+  );
+  nodes.menuToolbarChevron.textContent = menuToolbarCollapsed
+    ? 'expand_more'
+    : 'expand_less';
 }
 
-function syncMobileMenuMode() {
-  mobileMenuSyncFrame = undefined;
-  const menuToolbarOffsetTop = getDocumentOffsetTop(nodes.menuToolbar);
-  const shouldHide =
-    window.innerWidth < 768 &&
-    window.scrollY >= menuToolbarOffsetTop;
-
-  if (shouldHide === mobileMenuMode) {
-    return;
+function getActiveCategoryLabel() {
+  if (state.activeCategory === 'all') {
+    return getCopy('allCategories');
   }
 
-  mobileMenuMode = shouldHide;
-  document.body.classList.toggle('mobile-menu-mode', shouldHide);
-  nodes.siteHeader.inert = shouldHide;
-  if (shouldHide) {
+  return (
+    getCategories(menuData).find(
+      (category) => category.id === state.activeCategory,
+    )?.name ?? getCopy('allCategories')
+  );
+}
+
+function syncMenuToolbarSummary() {
+  nodes.menuSearchSummary.textContent =
+    state.searchQuery.trim() || getCopy('searchSummaryEmpty');
+  nodes.menuCategorySummary.textContent = getActiveCategoryLabel();
+}
+
+function syncMenuScrollState() {
+  menuScrollSyncFrame = undefined;
+  const menuBounds = nodes.menuSection.getBoundingClientRect();
+  const headerHeight = nodes.siteHeader.offsetHeight;
+  const menuIsActive =
+    menuBounds.top < window.innerHeight &&
+    menuBounds.bottom > headerHeight;
+  const shouldHideHeader =
+    menuBounds.top <= 0 && menuBounds.bottom > headerHeight;
+
+  if (shouldHideHeader !== menuSectionMode) {
+    menuSectionMode = shouldHideHeader;
+    document.body.classList.toggle('menu-section-mode', shouldHideHeader);
+    nodes.siteHeader.inert = shouldHideHeader;
+  }
+  if (shouldHideHeader) {
     nodes.siteHeader.setAttribute('aria-hidden', 'true');
   } else {
     nodes.siteHeader.removeAttribute('aria-hidden');
   }
+
+  if (!menuIsActive) {
+    menuToolbarUserCollapsed = undefined;
+  }
+
+  const toolbarBounds = nodes.menuToolbar.getBoundingClientRect();
+  const controlsHaveFocus = nodes.menuToolbarControls.contains(
+    document.activeElement,
+  );
+  const shouldAutoCollapse =
+    shouldHideHeader &&
+    !controlsHaveFocus &&
+    nodes.menuGrid.getBoundingClientRect().top <= toolbarBounds.bottom;
+  setMenuToolbarCollapsed(
+    menuToolbarUserCollapsed ?? shouldAutoCollapse,
+  );
 }
 
-function scheduleMobileMenuSync() {
-  if (mobileMenuSyncFrame !== undefined) {
+function scheduleMenuScrollSync() {
+  if (menuScrollSyncFrame !== undefined) {
     return;
   }
 
-  mobileMenuSyncFrame = requestAnimationFrame(syncMobileMenuMode);
+  menuScrollSyncFrame = requestAnimationFrame(syncMenuScrollState);
+}
+
+function toggleMenuToolbar() {
+  menuToolbarUserCollapsed = !menuToolbarCollapsed;
+  setMenuToolbarCollapsed(menuToolbarUserCollapsed);
 }
 
 function getCopy(key) {
@@ -151,6 +194,7 @@ function renderMenu() {
   nodes.menuGrid.setAttribute('aria-busy', 'false');
   nodes.emptyState.classList.toggle('hidden', visibleCount !== 0);
   updateResultCount(visibleCount, totalCount);
+  scheduleMenuScrollSync();
 }
 
 function getMenuItem(itemId) {
@@ -462,6 +506,7 @@ function renderCategoryControls() {
 
 function applyFilters() {
   state.searchQuery = nodes.searchInput.value;
+  syncMenuToolbarSummary();
   renderMenu();
   syncActiveCategoryControls();
 }
@@ -517,6 +562,7 @@ function updateStaticCopy() {
   renderCategoryControls();
   renderMenu();
   renderOrderList();
+  syncMenuToolbarSummary();
 }
 
 function setLanguage(language) {
@@ -546,7 +592,13 @@ function requireNode(selector) {
 
 function cacheNodes() {
   nodes.siteHeader = requireNode('.site-header');
+  nodes.menuSection = requireNode('#menu');
   nodes.menuToolbar = requireNode('.menu-toolbar');
+  nodes.menuToolbarToggle = requireNode('#menu-toolbar-toggle');
+  nodes.menuToolbarControls = requireNode('#menu-toolbar-controls');
+  nodes.menuToolbarChevron = requireNode('.menu-toolbar__chevron');
+  nodes.menuSearchSummary = requireNode('#menu-search-summary');
+  nodes.menuCategorySummary = requireNode('#menu-category-summary');
   nodes.searchInput = requireNode('#menu-search');
   nodes.categoryFilters = requireNode('#category-filters');
   nodes.mobileCategoryFilters = requireNode('#mobile-category-filters');
@@ -568,10 +620,12 @@ async function init() {
   state.orderList = reconcileOrderList(state.orderList, getAllItems(menuData));
   persistOrderList(state.orderList);
   updateStaticCopy();
-  window.addEventListener('scroll', scheduleMobileMenuSync, { passive: true });
-  window.addEventListener('resize', scheduleMobileMenuSync);
+  window.addEventListener('scroll', scheduleMenuScrollSync, { passive: true });
+  window.addEventListener('resize', scheduleMenuScrollSync);
+  document.addEventListener('focusin', scheduleMenuScrollSync);
 
   nodes.searchInput.addEventListener('input', applyFilters);
+  nodes.menuToolbarToggle.addEventListener('click', toggleMenuToolbar);
   nodes.menuGrid.addEventListener('click', handleMenuOrderClick);
   nodes.orderListItems.addEventListener('click', handleOrderListClick);
   nodes.orderListItems.addEventListener('input', handleOrderNoteInput);
@@ -601,7 +655,7 @@ async function init() {
   document.querySelectorAll('button[data-grid-size]').forEach((button) => {
     button.addEventListener('click', () => setGridSize(button.dataset.gridSize));
   });
-  scheduleMobileMenuSync();
+  scheduleMenuScrollSync();
 }
 
 init().catch(renderFatalError);
