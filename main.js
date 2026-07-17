@@ -42,7 +42,50 @@ const state = {
 let menuData;
 let orderDialogOpener;
 let orderCopyFeedbackTimer;
+let mobileMenuMode;
+let mobileMenuSyncFrame;
 const nodes = {};
+
+function getDocumentOffsetTop(element) {
+  let documentOffsetTop = 0;
+  let currentElement = element;
+
+  while (currentElement) {
+    documentOffsetTop += currentElement.offsetTop;
+    currentElement = currentElement.offsetParent;
+  }
+
+  return documentOffsetTop;
+}
+
+function syncMobileMenuMode() {
+  mobileMenuSyncFrame = undefined;
+  const menuToolbarOffsetTop = getDocumentOffsetTop(nodes.menuToolbar);
+  const shouldHide =
+    window.innerWidth < 768 &&
+    window.scrollY >= menuToolbarOffsetTop;
+
+  if (shouldHide === mobileMenuMode) {
+    return;
+  }
+
+  mobileMenuMode = shouldHide;
+  document.body.classList.toggle('mobile-menu-mode', shouldHide);
+  nodes.siteHeader.inert = shouldHide;
+  if (shouldHide) {
+    nodes.siteHeader.setAttribute('aria-hidden', 'true');
+  } else {
+    nodes.siteHeader.removeAttribute('aria-hidden');
+  }
+}
+
+function scheduleMobileMenuSync() {
+  if (mobileMenuSyncFrame !== undefined) {
+    return;
+  }
+
+  mobileMenuSyncFrame = requestAnimationFrame(syncMobileMenuMode);
+}
 
 function getCopy(key) {
   return getTranslation(state.language, key);
@@ -502,6 +545,8 @@ function requireNode(selector) {
 }
 
 function cacheNodes() {
+  nodes.siteHeader = requireNode('.site-header');
+  nodes.menuToolbar = requireNode('.menu-toolbar');
   nodes.searchInput = requireNode('#menu-search');
   nodes.categoryFilters = requireNode('#category-filters');
   nodes.mobileCategoryFilters = requireNode('#mobile-category-filters');
@@ -523,6 +568,8 @@ async function init() {
   state.orderList = reconcileOrderList(state.orderList, getAllItems(menuData));
   persistOrderList(state.orderList);
   updateStaticCopy();
+  window.addEventListener('scroll', scheduleMobileMenuSync, { passive: true });
+  window.addEventListener('resize', scheduleMobileMenuSync);
 
   nodes.searchInput.addEventListener('input', applyFilters);
   nodes.menuGrid.addEventListener('click', handleMenuOrderClick);
@@ -554,6 +601,7 @@ async function init() {
   document.querySelectorAll('button[data-grid-size]').forEach((button) => {
     button.addEventListener('click', () => setGridSize(button.dataset.gridSize));
   });
+  scheduleMobileMenuSync();
 }
 
 init().catch(renderFatalError);

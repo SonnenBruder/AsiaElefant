@@ -63,6 +63,16 @@ body {
   -webkit-backdrop-filter: blur(16px);
 }
 
+.site-header {
+  transition: transform 180ms ease;
+  will-change: transform;
+}
+
+.menu-toolbar {
+  top: var(--header-height);
+  transition: top 180ms ease;
+}
+
 .focus-ring:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 4px;
@@ -828,6 +838,16 @@ body {
     padding-top: var(--header-height);
     padding-bottom: 88px;
   }
+
+  body.mobile-menu-mode .site-header {
+    transform: translateY(calc(-100% - 1px));
+    pointer-events: none;
+  }
+
+  body.mobile-menu-mode .menu-toolbar {
+    top: 0;
+  }
+
   .menu-items-grid {
     grid-template-columns: 1fr;
   }
