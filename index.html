@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html id="top" class="dark" lang="de">
   <head>
     <meta charset="utf-8" />
@@ -181,40 +181,56 @@
     </header>
 
     <main>
-      <section class="border-b border-secondary/10 bg-surface/70">
-        <div
-          class="mx-auto grid max-w-max-width gap-10 px-container-padding py-12 md:grid-cols-[1.08fr_0.92fr] md:py-20 lg:py-24"
-        >
-          <div class="flex flex-col justify-center">
-            <p
-              class="mb-5 font-label-md text-sm font-bold text-secondary"
-              data-i18n="heroKicker"
-            >
-              Asia Elefant Schorndorf
+      <section class="restaurant-hero" aria-labelledby="hero-heading">
+        <picture class="restaurant-hero__media" aria-hidden="true">
+          <img
+            src="src/hero-dish-1800.jpg"
+            alt=""
+            width="1800"
+            height="1009"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+
+        <div class="restaurant-hero__inner">
+          <div class="restaurant-hero__content">
+            <p class="restaurant-hero__kicker" data-i18n="heroKicker">
+              Sushi / Wok / Asiatische Küche
             </p>
             <h1
-              class="max-w-3xl font-display-lg-mobile text-display-lg-mobile text-on-surface md:font-display-lg md:text-display-lg"
+              id="hero-heading"
+              class="restaurant-hero__title"
               data-i18n="heroTitle"
             >
-              Speisekarte
+              Asia Elefant Schorndorf
             </h1>
-            <p
-              class="mt-5 max-w-2xl font-body-lg text-body-lg text-on-surface-variant"
-              data-i18n="heroSubtitle"
-            >
-              Sushi, Wok-Spezialitaeten und telefonische Bestellung in einer
-              ruhigen, klaren Restaurantansicht.
+            <p class="restaurant-hero__subtitle" data-i18n="heroSubtitle">
+              Sushi, Wok und asiatische Lieblingsgerichte - frisch zubereitet
+              in Schorndorf.
             </p>
             <p
-              class="mt-3 max-w-2xl text-sm leading-6 text-on-surface-variant"
+              class="restaurant-hero__secondary"
               data-i18n="heroSubtitleSecondary"
             >
-              Menu browsing, search, category filters and click-to-call ordering
-              for local guests.
+              Wähle deine Gerichte in Ruhe aus und bestelle direkt bei uns zur
+              Abholung.
             </p>
-            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+
+            <div class="restaurant-hero__actions">
               <a
-                class="focus-ring inline-flex items-center justify-center gap-2 rounded-md bg-secondary px-5 py-4 text-sm font-extrabold text-on-secondary transition hover:bg-secondary-fixed"
+                class="restaurant-hero__cta restaurant-hero__cta--primary focus-ring"
+                href="#menu"
+              >
+                <span
+                  class="material-symbols-outlined text-[20px]"
+                  aria-hidden="true"
+                  >restaurant_menu</span
+                >
+                <span data-i18n="browseMenu">Speisekarte entdecken</span>
+              </a>
+              <a
+                class="restaurant-hero__cta restaurant-hero__cta--secondary focus-ring"
                 href="tel:071814826448"
                 data-phone-action
                 data-phone-label="hero"
@@ -224,85 +240,25 @@
                   aria-hidden="true"
                   >call</span
                 >
-                <span class="phone-label">Anrufen & bestellen</span>
-              </a>
-              <a
-                class="focus-ring inline-flex items-center justify-center gap-2 rounded-md border border-secondary/35 px-5 py-4 text-sm font-bold text-secondary transition hover:bg-secondary/10"
-                href="#menu"
-              >
-                <span
-                  class="material-symbols-outlined text-[20px]"
-                  aria-hidden="true"
-                  >restaurant_menu</span
-                >
-                <span data-i18n="browseMenu">Speisekarte ansehen</span>
+                <span class="phone-label">Jetzt anrufen</span>
               </a>
             </div>
-          </div>
 
-          <aside
-            class="surface-panel p-5 md:p-6"
-            aria-label="Restaurant Kurzinfo / Restaurant summary"
-            data-i18n-aria-label="restaurantSummaryLabel"
-          >
-            <div
-              class="dish-placeholder grid min-h-[280px] place-items-center rounded-lg border border-secondary/16 p-6 text-center"
-              role="img"
-              aria-label="Bildplatzhalter fuer Asia Elefant Schorndorf bis freigegebene Restaurantfotos vorliegen"
-              data-i18n-aria-label="restaurantImageLabel"
+            <dl
+              class="restaurant-hero__details"
+              aria-label="Restaurant Kurzinfo / Restaurant summary"
+              data-i18n-aria-label="restaurantSummaryLabel"
             >
-              <div>
-                <span
-                  class="material-symbols-outlined mb-4 block text-5xl text-secondary"
-                  aria-hidden="true"
-                  >restaurant</span
-                >
-                <p
-                  class="font-headline-sm text-headline-sm text-on-surface"
-                  data-i18n="imagePlaceholderTitle"
-                >
-                  Bildplatzhalter
-                </p>
-                <p
-                  class="mt-2 max-w-sm text-sm leading-6 text-on-surface-variant"
-                  data-i18n="imagePlaceholderText"
-                >
-                  Reserviert fuer freigegebene Speisen- und
-                  Restaurantfotografie.
-                </p>
+              <div class="restaurant-hero__detail">
+                <dt data-i18n="phoneLabel">Telefon</dt>
+                <dd data-restaurant-phone>07181 - 4826448</dd>
               </div>
-            </div>
-            <dl class="mt-6 grid gap-4 sm:grid-cols-2">
-              <div class="border-t border-secondary/15 pt-4">
-                <dt
-                  class="text-xs font-bold text-secondary"
-                  data-i18n="phoneLabel"
-                >
-                  Telefon
-                </dt>
-                <dd
-                  class="mt-1 text-sm text-on-surface-variant"
-                  data-restaurant-phone
-                >
-                  07181 - 4826448
-                </dd>
-              </div>
-              <div class="border-t border-secondary/15 pt-4">
-                <dt
-                  class="text-xs font-bold text-secondary"
-                  data-i18n="serviceLabel"
-                >
-                  Service
-                </dt>
-                <dd
-                  class="mt-1 text-sm text-on-surface-variant"
-                  data-i18n="serviceText"
-                >
-                  Anrufen & abholen
-                </dd>
+              <div class="restaurant-hero__detail">
+                <dt data-i18n="serviceLabel">Service</dt>
+                <dd data-i18n="serviceText">Anrufen & abholen</dd>
               </div>
             </dl>
-          </aside>
+          </div>
         </div>
       </section>
 

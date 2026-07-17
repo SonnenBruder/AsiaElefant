@@ -30,13 +30,13 @@ export const translations = {
       quantity > 0
         ? `${itemName}: Menge ${quantity}`
         : `${itemName} entfernt`,
-    heroKicker: 'Asia Elefant Schorndorf',
-    heroTitle: 'Speisekarte',
+    heroKicker: 'Sushi / Wok / Asiatische Küche',
+    heroTitle: 'Asia Elefant Schorndorf',
     heroSubtitle:
-      'Sushi, Wok-Spezialitaeten und telefonische Bestellung in einer ruhigen, klaren Restaurantansicht.',
+      'Sushi, Wok und asiatische Lieblingsgerichte - frisch zubereitet in Schorndorf.',
     heroSubtitleSecondary:
-      'Menu browsing, search, category filters and click-to-call ordering for local guests.',
-    browseMenu: 'Speisekarte ansehen',
+      'Wähle deine Gerichte in Ruhe aus und bestelle direkt bei uns zur Abholung.',
+    browseMenu: 'Speisekarte entdecken',
     imagePlaceholderTitle: 'Bildplatzhalter',
     imagePlaceholderText:
       'Reserviert fuer freigegebene Speisen- und Restaurantfotografie.',
@@ -87,7 +87,7 @@ export const translations = {
     resultCount: (visible, total) =>
       `${visible} von ${total} Gerichten sichtbar`,
     callHeader: (phone) => `Anrufen: ${phone}`,
-    callHero: () => 'Anrufen & bestellen',
+    callHero: () => 'Jetzt anrufen',
     callMenu: () => 'Telefonisch bestellen',
     callInfo: () => 'Anrufen',
     callFooter: (phone) => phone,
@@ -122,13 +122,13 @@ export const translations = {
       quantity > 0
         ? `${itemName}: quantity ${quantity}`
         : `${itemName} removed`,
-    heroKicker: 'Asia Elefant Schorndorf',
-    heroTitle: 'Menu',
+    heroKicker: 'Sushi / Wok / Asian cuisine',
+    heroTitle: 'Asia Elefant Schorndorf',
     heroSubtitle:
-      'Sushi, wok specialties and phone ordering in a calm, focused restaurant view.',
+      'Fresh sushi, wok dishes and Asian favorites, prepared locally in Schorndorf.',
     heroSubtitleSecondary:
-      'Deutsch bleibt die Primaersprache; English UI copy is available for browsing and calls.',
-    browseMenu: 'Browse menu',
+      'Browse at your own pace and order directly from us for collection.',
+    browseMenu: 'Explore the menu',
     imagePlaceholderTitle: 'Image placeholder',
     imagePlaceholderText:
       'Reserved for approved dish and restaurant photography.',
@@ -177,7 +177,7 @@ export const translations = {
     dishCount: (count) => `${count} dishes`,
     resultCount: (visible, total) => `${visible} of ${total} dishes visible`,
     callHeader: (phone) => `Call: ${phone}`,
-    callHero: () => 'Call to order',
+    callHero: () => 'Call now',
     callMenu: () => 'Order by phone',
     callInfo: () => 'Call',
     callFooter: (phone) => phone,
