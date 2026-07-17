@@ -1,7 +1,7 @@
 {
   "name": "asiaelefant",
   "version": "1.0.0",
-  "description": "Static restaurant menu for Netlify. It uses native ES modules, the Tailwind CDN, and no build step or package installation.",
+  "description": "Static restaurant menu for Netlify. It uses native ES modules and compiled Tailwind CSS.",
   "main": "main.js",
   "scripts": {
     "build": "tailwindcss -i ./index.css -o ./styles.css --minify",

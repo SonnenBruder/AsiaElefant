@@ -1,13 +1,46 @@
 # Asia Elefant menu site
 
-Static restaurant page. It uses native ES modules, the Tailwind CDN, and no build step or package installation.
+Static restaurant menu built with native ES modules and Tailwind CSS 3.
+
+## Local development
+
+Install the exact dependencies from the lockfile:
+
+```sh
+npm ci
+```
+
+Create the minified production stylesheet:
+
+```sh
+npm run build
+```
+
+During CSS or markup work, run the stylesheet watcher in one terminal:
+
+```sh
+npm run watch:css
+```
+
+Serve the repository root in another terminal, for example:
+
+```sh
+python -m http.server 8000
+```
+
+Then open `http://127.0.0.1:8000/`. `index.css` is the Tailwind and custom CSS source. `styles.css` is the generated production output used by `index.html`; keep it updated with `npm run build` before deployment.
+
+## Netlify
+
+Set the build command to `npm run build` and the publish directory to `.`. Netlify installs the dependencies from `package.json` and `package-lock.json`, then publishes the generated `styles.css` with the static site.
 
 ## File ownership
 
 - `asia_elefant_menu.json`: restaurant details, phone number, categories, and dishes.
 - `scripts/translations.js`: German and English interface copy.
-- `tailwind.config.js`: theme tokens such as colors, fonts, spacing, and radii.
-- `index.css`: custom layout, responsive grid, focus, and component styles.
+- `tailwind.config.js`: Tailwind content paths, forms plugin, and theme tokens such as colors, fonts, spacing, and radii.
+- `index.css`: Tailwind directives and custom layout, responsive grid, focus, and component styles.
+- `styles.css`: generated minified production stylesheet.
 - `scripts/menu-data.js`: menu loading and schema validation.
 - `scripts/menu-utils.js`: price, number, tag, normalization, and search helpers.
 - `scripts/menu-view.js`: category and dish markup.
@@ -34,4 +67,4 @@ Each category requires string fields `id` and `name`, plus an `items` array. Eac
 
 ## Edit copy and visuals
 
-Add or change both language entries in `scripts/translations.js`; matching keys keep the language toggle complete. Change theme tokens in `tailwind.config.js` and custom visual rules in `index.css`. Keep the Tailwind CDN script before `tailwind.config.js` in `index.html`.
+Add or change both language entries in `scripts/translations.js`; matching keys keep the language toggle complete. Change theme tokens in `tailwind.config.js` and custom visual rules in `index.css`, then regenerate `styles.css` with `npm run build`.
