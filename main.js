@@ -20,7 +20,10 @@ import {
   setItemNote,
   setItemQuantity,
 } from './scripts/order-list.js';
-import { renderOrderListView } from './scripts/order-list-view.js';
+import {
+  buildOrderListClipboardText,
+  renderOrderListView,
+} from './scripts/order-list-view.js';
 import { escapeHtml } from './scripts/menu-utils.js';
 import { getTranslation } from './scripts/translations.js';
 
@@ -38,6 +41,7 @@ const state = {
 
 let menuData;
 let orderDialogOpener;
+let orderCopyFeedbackTimer;
 const nodes = {};
 
 function getCopy(key) {
@@ -127,6 +131,101 @@ function renderOrderList() {
   nodes.orderListItems.innerHTML = itemsMarkup;
   nodes.orderListTotal.innerHTML = totalMarkup;
   updateOrderBadges();
+}
+
+function copyTextWithFallback(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.setAttribute('aria-hidden', 'true');
+  textarea.style.position = 'fixed';
+  textarea.style.top = '0';
+  textarea.style.left = '-9999px';
+  textarea.style.width = '1px';
+  textarea.style.height = '1px';
+  textarea.style.opacity = '0';
+  textarea.style.pointerEvents = 'none';
+  document.body.append(textarea);
+
+  try {
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, textarea.value.length);
+    if (!document.execCommand('copy')) {
+      throw new Error('Copy command was rejected');
+    }
+  } finally {
+    textarea.remove();
+  }
+}
+
+async function writeOrderListClipboardText(text) {
+  if (typeof navigator.clipboard?.writeText === 'function') {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {}
+  }
+
+  copyTextWithFallback(text);
+}
+
+function clearOrderCopyFeedbackTimer() {
+  if (orderCopyFeedbackTimer) {
+    clearTimeout(orderCopyFeedbackTimer);
+    orderCopyFeedbackTimer = undefined;
+  }
+}
+
+function showOrderCopyFeedback(button, translationKey) {
+  clearOrderCopyFeedbackTimer();
+
+  const feedback = getCopy(translationKey);
+  const label = button.querySelector('[data-order-list-copy-label]');
+  if (label && typeof feedback === 'string') {
+    label.textContent = feedback;
+  }
+  if (typeof feedback === 'string') {
+    nodes.orderListStatus.textContent = feedback;
+  }
+  if (button.isConnected) {
+    button.focus({ preventScroll: true });
+  }
+
+  orderCopyFeedbackTimer = setTimeout(() => {
+    orderCopyFeedbackTimer = undefined;
+    if (!button.isConnected || !nodes.orderListTotal.contains(button)) {
+      return;
+    }
+
+    const currentLabel = button.querySelector(
+      '[data-order-list-copy-label]',
+    );
+    if (currentLabel) {
+      currentLabel.textContent = getCopy('orderCopyLabel');
+    }
+  }, 2000);
+}
+
+async function handleOrderListTotalClick(event) {
+  const button = event.target.closest('[data-order-list-copy]');
+  if (!button || !nodes.orderListTotal.contains(button)) {
+    return;
+  }
+
+  const text = buildOrderListClipboardText(state.orderList, menuData);
+  if (!text) {
+    return;
+  }
+
+  clearOrderCopyFeedbackTimer();
+  try {
+    await writeOrderListClipboardText(text);
+    showOrderCopyFeedback(button, 'orderCopySuccess');
+  } catch (error) {
+    console.warn('Order list could not be copied.');
+    showOrderCopyFeedback(button, 'orderCopyFailure');
+  }
 }
 
 function focusItemControl(container, selector, datasetKey, itemId) {
@@ -429,6 +528,7 @@ async function init() {
   nodes.menuGrid.addEventListener('click', handleMenuOrderClick);
   nodes.orderListItems.addEventListener('click', handleOrderListClick);
   nodes.orderListItems.addEventListener('input', handleOrderNoteInput);
+  nodes.orderListTotal.addEventListener('click', handleOrderListTotalClick);
   nodes.orderListClose.addEventListener('click', closeOrderList);
   nodes.orderListDialog.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {

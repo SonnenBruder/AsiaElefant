@@ -468,6 +468,34 @@ body {
   gap: 20px;
 }
 
+.order-copy-button {
+  display: flex;
+  width: 100%;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  background: rgba(233, 193, 118, 0.08);
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 800;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.order-copy-button:hover {
+  background: var(--gold);
+  color: var(--surface-lowest);
+}
+
+.order-copy-button .material-symbols-outlined {
+  font-size: 20px;
+}
+
 @media (max-width: 767px) {
   body {
     padding-top: var(--header-height);

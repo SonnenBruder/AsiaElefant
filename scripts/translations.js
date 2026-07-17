@@ -20,6 +20,9 @@ export const translations = {
     orderNoteLabel: 'Notiz (optional)',
     orderNotePlaceholder: 'Zum Beispiel: ohne Zwiebeln',
     orderEstimatedTotal: 'Geschaetzte Summe',
+    orderCopyLabel: 'Liste kopieren',
+    orderCopySuccess: 'Kopiert',
+    orderCopyFailure: 'Liste konnte nicht kopiert werden',
     orderCloseLabel: 'Bestellliste schliessen',
     orderCountAnnouncement: (count) =>
       count === 1 ? '1 Gericht auf der Liste' : `${count} Gerichte auf der Liste`,
@@ -109,6 +112,9 @@ export const translations = {
     orderNoteLabel: 'Note (optional)',
     orderNotePlaceholder: 'For example: no onions',
     orderEstimatedTotal: 'Estimated total',
+    orderCopyLabel: 'Copy list',
+    orderCopySuccess: 'Copied',
+    orderCopyFailure: 'List could not be copied',
     orderCloseLabel: 'Close order list',
     orderCountAnnouncement: (count) =>
       count === 1 ? '1 dish on the list' : `${count} dishes on the list`,

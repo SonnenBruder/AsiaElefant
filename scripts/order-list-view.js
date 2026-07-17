@@ -41,6 +41,22 @@ function renderOrderRow(entry, item, currency, getCopy) {
     </li>`;
 }
 
+export function buildOrderListClipboardText(list, data) {
+  const itemsById = new Map(
+    getAllItems(data).map((item) => [item.id, item]),
+  );
+
+  return list.items
+    .map((entry) => {
+      const item = itemsById.get(entry.id);
+      return item
+        ? `${entry.quantity}x ${itemDisplayNumber(item)} : ${item.name}`
+        : '';
+    })
+    .filter(Boolean)
+    .join('\n');
+}
+
 export function renderOrderListView({ list, data, getCopy }) {
   const menuItems = getAllItems(data);
   const itemsById = new Map(menuItems.map((item) => [item.id, item]));
@@ -69,6 +85,10 @@ export function renderOrderListView({ list, data, getCopy }) {
       <div class="order-total">
         <span class="text-sm font-bold text-on-surface-variant">${escapeHtml(getCopy('orderEstimatedTotal'))}</span>
         <strong class="font-headline-sm text-2xl text-secondary">${escapeHtml(formatPrice(getOrderTotal(list, menuItems), data.currency))}</strong>
-      </div>`,
+      </div>
+      <button class="order-copy-button focus-ring" type="button" data-order-list-copy>
+        <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+        <span data-order-list-copy-label>${escapeHtml(getCopy('orderCopyLabel'))}</span>
+      </button>`,
   };
 }
