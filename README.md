@@ -44,6 +44,8 @@ Set the build command to `npm run build` and the publish directory to `.`. Netli
 - `scripts/menu-data.js`: menu loading and schema validation.
 - `scripts/menu-utils.js`: price, number, tag, normalization, and search helpers.
 - `scripts/menu-view.js`: category and dish markup.
+- `scripts/order-list.js`: order-list domain rules, sanitization, totals, and persistence.
+- `scripts/order-list-view.js`: order-list drawer rows and empty/total markup.
 - `main.js`: page state, DOM updates, storage, and event handling.
 - `index.html`: document structure and accessible static content.
 
@@ -68,3 +70,9 @@ Each category requires string fields `id` and `name`, plus an `items` array. Eac
 ## Edit copy and visuals
 
 Add or change both language entries in `scripts/translations.js`; matching keys keep the language toggle complete. Change theme tokens in `tailwind.config.js` and custom visual rules in `index.css`, then regenerate `styles.css` with `npm run build`.
+
+## Order-list storage
+
+The future-order list is stored locally under `asia-elefant-order-list`. Its versioned JSON contains only menu item IDs, integer quantities (maximum 99), and optional notes (maximum 200 characters). Names, numbers, prices, customer details, and payment data are not stored.
+
+Stored values are sanitized when read. Items that no longer exist in the current menu are removed after menu data loads.

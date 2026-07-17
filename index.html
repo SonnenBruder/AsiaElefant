@@ -117,6 +117,19 @@
               EN
             </button>
           </div>
+          <button
+            class="order-list-trigger focus-ring hidden min-h-11 items-center gap-2 rounded-md border border-secondary/30 px-3 text-sm font-bold text-secondary md:inline-flex"
+            type="button"
+            data-order-list-open
+          >
+            <span class="material-symbols-outlined text-[20px]" aria-hidden="true"
+              >receipt_long</span
+            >
+            <span data-i18n="navOrderList">Bestellliste</span>
+            <span class="order-count-badge" data-order-list-count hidden
+              >0</span
+            >
+          </button>
           <a
             class="focus-ring hidden items-center gap-2 rounded-md bg-secondary px-4 py-3 text-sm font-extrabold text-on-secondary transition hover:bg-secondary-fixed md:inline-flex"
             href="tel:071814826448"
@@ -632,7 +645,7 @@
     </footer>
 
     <nav
-      class="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-50 grid h-20 grid-cols-4 border-t border-secondary/15 bg-surface-container-lowest/96 px-2 glass-header md:hidden"
+      class="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-50 grid h-20 grid-cols-5 border-t border-secondary/15 bg-surface-container-lowest/96 px-1 glass-header md:hidden"
       aria-label="Mobile Navigation"
     >
       <a
@@ -653,6 +666,26 @@
           >Speisekarte</span
         >
       </a>
+      <button
+        class="focus-ring relative flex flex-col items-center justify-center gap-1 rounded-md text-on-surface-variant"
+        type="button"
+        data-order-list-open
+      >
+        <span class="relative">
+          <span class="material-symbols-outlined" aria-hidden="true"
+            >receipt_long</span
+          >
+          <span
+            class="order-count-badge order-count-badge--mobile"
+            data-order-list-count
+            hidden
+            >0</span
+          >
+        </span>
+        <span class="text-[11px] font-bold" data-i18n="navOrderList"
+          >Bestellliste</span
+        >
+      </button>
       <a
         class="focus-ring flex flex-col items-center justify-center gap-1 rounded-md text-secondary"
         href="tel:071814826448"
@@ -671,6 +704,47 @@
         <span class="text-[11px] font-bold" data-i18n="navInfo">Info</span>
       </a>
     </nav>
+
+    <dialog
+      id="order-list-dialog"
+      class="order-list-dialog"
+      aria-labelledby="order-list-title"
+    >
+      <section class="order-list-panel">
+        <header class="order-list-header">
+          <div>
+            <p class="text-xs font-bold text-secondary">Asia Elefant</p>
+            <h2
+              id="order-list-title"
+              class="mt-1 font-headline-sm text-2xl text-on-surface"
+              data-i18n="orderListTitle"
+            >
+              Bestellliste
+            </h2>
+          </div>
+          <button
+            id="order-list-close"
+            class="order-icon-button focus-ring"
+            type="button"
+            aria-label="Bestellliste schliessen"
+            data-i18n-aria-label="orderCloseLabel"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >close</span
+            >
+          </button>
+        </header>
+        <div id="order-list-items" class="order-list-content"></div>
+        <footer id="order-list-total" class="order-list-footer"></footer>
+        <p
+          id="order-list-status"
+          class="sr-only"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></p>
+      </section>
+    </dialog>
 
     <script type="module" src="main.js"></script>
   </body>

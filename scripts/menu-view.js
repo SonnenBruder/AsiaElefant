@@ -17,13 +17,18 @@ function renderTags(item, language) {
 }
 
 function renderMenuItem(item, category, options) {
-  const { currency, language, getCopy } = options;
+  const { currency, language, getCopy, listQuantities } = options;
+  const selectedQuantity = listQuantities.get(item.id) ?? 0;
   const number = itemDisplayNumber(item);
   const placeholderCopy = getCopy('imagePlaceholderLabel');
   const placeholderLabel =
     typeof placeholderCopy === 'function'
       ? placeholderCopy(category.name, item.name)
       : `${category.name}: ${item.name}`;
+
+  const buttonCopy = selectedQuantity
+    ? getCopy('orderAddAnother')
+    : getCopy('orderAdd');
 
   return `
         <article class="menu-card group flex min-h-full flex-col overflow-hidden" data-menu-item="${escapeHtml(item.id)}">
@@ -44,6 +49,15 @@ function renderMenuItem(item, category, options) {
             <div class="mt-5 flex min-h-7 flex-wrap gap-2" aria-label="${escapeHtml(getCopy('tagGroupLabel'))}">
               ${renderTags(item, language)}
             </div>
+            <button class="menu-add-button focus-ring mt-5" type="button" data-order-list-add="${escapeHtml(item.id)}">
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">playlist_add</span>
+              <span>${escapeHtml(buttonCopy)}</span>
+              ${
+                selectedQuantity
+                  ? `<span class="menu-selected-quantity">${escapeHtml(getCopy('orderSelectedQuantity'))}: ${selectedQuantity}</span>`
+                  : ''
+              }
+            </button>
           </div>
         </article>`;
 }
@@ -80,6 +94,7 @@ export function renderMenuView({
   searchQuery,
   language,
   getCopy,
+  listQuantities,
 }) {
   let visibleCount = 0;
   const markup = getCategories(data)
@@ -93,7 +108,12 @@ export function renderMenuView({
       visibleCount += items.length;
       return renderCategory(
         { ...category, items },
-        { currency: data.currency, language, getCopy },
+        {
+          currency: data.currency,
+          language,
+          getCopy,
+          listQuantities,
+        },
       );
     })
     .join('');

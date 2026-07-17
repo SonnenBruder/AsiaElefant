@@ -5,6 +5,28 @@ export const translations = {
     navInfo: 'Info',
     navContact: 'Kontakt',
     navCall: 'Anrufen',
+    navOrderList: 'Bestellliste',
+    orderListTitle: 'Bestellliste',
+    orderAdd: 'Zur Liste',
+    orderAddAnother: 'Weiteres hinzufuegen',
+    orderSelectedQuantity: 'Ausgewaehlt',
+    orderEmptyTitle: 'Deine Liste ist leer',
+    orderEmptyText:
+      'Fuege Gerichte aus der Speisekarte hinzu, um sie hier zu sammeln.',
+    orderQuantityLabel: 'Menge',
+    orderDecreaseLabel: (itemName) => `${itemName}: Menge verringern`,
+    orderIncreaseLabel: (itemName) => `${itemName}: Menge erhoehen`,
+    orderRemoveLabel: (itemName) => `${itemName} entfernen`,
+    orderNoteLabel: 'Notiz (optional)',
+    orderNotePlaceholder: 'Zum Beispiel: ohne Zwiebeln',
+    orderEstimatedTotal: 'Geschaetzte Summe',
+    orderCloseLabel: 'Bestellliste schliessen',
+    orderCountAnnouncement: (count) =>
+      count === 1 ? '1 Gericht auf der Liste' : `${count} Gerichte auf der Liste`,
+    orderUpdatedAnnouncement: (itemName, quantity) =>
+      quantity > 0
+        ? `${itemName}: Menge ${quantity}`
+        : `${itemName} entfernt`,
     heroKicker: 'Asia Elefant Schorndorf',
     heroTitle: 'Speisekarte',
     heroSubtitle:
@@ -73,6 +95,27 @@ export const translations = {
     navInfo: 'Info',
     navContact: 'Contact',
     navCall: 'Call',
+    navOrderList: 'Order list',
+    orderListTitle: 'Order list',
+    orderAdd: 'Add to list',
+    orderAddAnother: 'Add another',
+    orderSelectedQuantity: 'Selected',
+    orderEmptyTitle: 'Your list is empty',
+    orderEmptyText: 'Add dishes from the menu to collect them here.',
+    orderQuantityLabel: 'Quantity',
+    orderDecreaseLabel: (itemName) => `Decrease quantity for ${itemName}`,
+    orderIncreaseLabel: (itemName) => `Increase quantity for ${itemName}`,
+    orderRemoveLabel: (itemName) => `Remove ${itemName}`,
+    orderNoteLabel: 'Note (optional)',
+    orderNotePlaceholder: 'For example: no onions',
+    orderEstimatedTotal: 'Estimated total',
+    orderCloseLabel: 'Close order list',
+    orderCountAnnouncement: (count) =>
+      count === 1 ? '1 dish on the list' : `${count} dishes on the list`,
+    orderUpdatedAnnouncement: (itemName, quantity) =>
+      quantity > 0
+        ? `${itemName}: quantity ${quantity}`
+        : `${itemName} removed`,
     heroKicker: 'Asia Elefant Schorndorf',
     heroTitle: 'Menu',
     heroSubtitle:

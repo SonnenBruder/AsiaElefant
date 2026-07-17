@@ -1,4 +1,5 @@
 import {
+  getAllItems,
   getCategories,
   getPhoneLink,
   loadMenuData,
@@ -7,6 +8,19 @@ import {
   renderCategoryControlsView,
   renderMenuView,
 } from './scripts/menu-view.js';
+import {
+  createEmptyOrderList,
+  getItemQuantity,
+  getOrderUnitCount,
+  incrementItem,
+  persistOrderList,
+  readOrderList,
+  reconcileOrderList,
+  removeItem,
+  setItemNote,
+  setItemQuantity,
+} from './scripts/order-list.js';
+import { renderOrderListView } from './scripts/order-list-view.js';
 import { escapeHtml } from './scripts/menu-utils.js';
 import { getTranslation } from './scripts/translations.js';
 
@@ -18,10 +32,12 @@ const state = {
   activeCategory: 'all',
   gridSize: DEFAULT_GRID_SIZE,
   language: 'de',
+  orderList: createEmptyOrderList(),
   searchQuery: '',
 };
 
 let menuData;
+let orderDialogOpener;
 const nodes = {};
 
 function getCopy(key) {
@@ -78,6 +94,9 @@ function renderMenu() {
     searchQuery: state.searchQuery,
     language: state.language,
     getCopy,
+    listQuantities: new Map(
+      state.orderList.items.map((item) => [item.id, item.quantity]),
+    ),
   });
 
   syncGridSizeControls();
@@ -85,6 +104,187 @@ function renderMenu() {
   nodes.menuGrid.setAttribute('aria-busy', 'false');
   nodes.emptyState.classList.toggle('hidden', visibleCount !== 0);
   updateResultCount(visibleCount, totalCount);
+}
+
+function getMenuItem(itemId) {
+  return getAllItems(menuData).find((item) => item.id === itemId);
+}
+
+function updateOrderBadges() {
+  const count = getOrderUnitCount(state.orderList);
+  document.querySelectorAll('[data-order-list-count]').forEach((badge) => {
+    badge.textContent = String(count);
+    badge.hidden = count === 0;
+  });
+}
+
+function renderOrderList() {
+  const { itemsMarkup, totalMarkup } = renderOrderListView({
+    list: state.orderList,
+    data: menuData,
+    getCopy,
+  });
+  nodes.orderListItems.innerHTML = itemsMarkup;
+  nodes.orderListTotal.innerHTML = totalMarkup;
+  updateOrderBadges();
+}
+
+function focusItemControl(container, selector, datasetKey, itemId) {
+  const control = Array.from(container.querySelectorAll(selector)).find(
+    (candidate) => candidate.dataset[datasetKey] === itemId,
+  );
+  control?.focus();
+  return Boolean(control);
+}
+
+function restoreOrderListFocus(focusContext) {
+  if (!focusContext) {
+    return;
+  }
+
+  if (
+    focusItemControl(
+      focusContext.container,
+      focusContext.selector,
+      focusContext.datasetKey,
+      focusContext.itemId,
+    )
+  ) {
+    return;
+  }
+
+  if (focusContext.fallbackIndex === undefined) {
+    return;
+  }
+
+  const quantityControls = nodes.orderListItems.querySelectorAll(
+    '[data-order-list-decrease]',
+  );
+  const fallbackControl =
+    quantityControls[
+      Math.min(focusContext.fallbackIndex, quantityControls.length - 1)
+    ] ?? nodes.orderListClose;
+  fallbackControl.focus();
+}
+
+function announceOrderUpdate(itemId) {
+  const item = getMenuItem(itemId);
+  if (!item) {
+    return;
+  }
+
+  const quantity = getItemQuantity(state.orderList, itemId);
+  const updateCopy = getCopy('orderUpdatedAnnouncement');
+  const countCopy = getCopy('orderCountAnnouncement');
+  const update =
+    typeof updateCopy === 'function'
+      ? updateCopy(item.name, quantity)
+      : item.name;
+  const count = getOrderUnitCount(state.orderList);
+  const countText =
+    typeof countCopy === 'function' ? countCopy(count) : String(count);
+  nodes.orderListStatus.textContent = `${update}. ${countText}`;
+}
+
+function commitOrderList(nextList, itemId, focusContext) {
+  state.orderList = nextList;
+  persistOrderList(state.orderList);
+  renderMenu();
+  renderOrderList();
+  restoreOrderListFocus(focusContext);
+  announceOrderUpdate(itemId);
+}
+
+function handleMenuOrderClick(event) {
+  const button = event.target.closest('[data-order-list-add]');
+  if (!button || !nodes.menuGrid.contains(button)) {
+    return;
+  }
+
+  const itemId = button.dataset.orderListAdd;
+  commitOrderList(incrementItem(state.orderList, itemId), itemId, {
+    container: nodes.menuGrid,
+    selector: '[data-order-list-add]',
+    datasetKey: 'orderListAdd',
+    itemId,
+  });
+}
+
+function handleOrderListClick(event) {
+  const decrease = event.target.closest('[data-order-list-decrease]');
+  const increase = event.target.closest('[data-order-list-increase]');
+  const remove = event.target.closest('[data-order-list-remove]');
+  const control = decrease || increase || remove;
+  if (!control || !nodes.orderListItems.contains(control)) {
+    return;
+  }
+
+  const itemId =
+    control.dataset.orderListDecrease ||
+    control.dataset.orderListIncrease ||
+    control.dataset.orderListRemove;
+  const fallbackIndex = Math.max(
+    state.orderList.items.findIndex((item) => item.id === itemId),
+    0,
+  );
+  if (increase) {
+    commitOrderList(incrementItem(state.orderList, itemId), itemId, {
+      container: nodes.orderListItems,
+      selector: '[data-order-list-increase]',
+      datasetKey: 'orderListIncrease',
+      itemId,
+      fallbackIndex,
+    });
+  } else if (decrease) {
+    commitOrderList(
+      setItemQuantity(
+        state.orderList,
+        itemId,
+        getItemQuantity(state.orderList, itemId) - 1,
+      ),
+      itemId,
+      {
+        container: nodes.orderListItems,
+        selector: '[data-order-list-decrease]',
+        datasetKey: 'orderListDecrease',
+        itemId,
+        fallbackIndex,
+      },
+    );
+  } else {
+    commitOrderList(removeItem(state.orderList, itemId), itemId, {
+      container: nodes.orderListItems,
+      selector: '[data-order-list-remove]',
+      datasetKey: 'orderListRemove',
+      itemId,
+      fallbackIndex,
+    });
+  }
+}
+
+function handleOrderNoteInput(event) {
+  if (!event.target.matches('[data-order-list-note]')) {
+    return;
+  }
+
+  state.orderList = setItemNote(
+    state.orderList,
+    event.target.dataset.orderListNote,
+    event.target.value,
+  );
+  persistOrderList(state.orderList);
+}
+
+function openOrderList(event) {
+  orderDialogOpener = event.currentTarget;
+  renderOrderList();
+  if (!nodes.orderListDialog.open) {
+    nodes.orderListDialog.showModal();
+  }
+}
+
+function closeOrderList() {
+  nodes.orderListDialog.close();
 }
 
 function syncActiveCategoryControls() {
@@ -174,6 +374,7 @@ function updateStaticCopy() {
   updatePhoneActions();
   renderCategoryControls();
   renderMenu();
+  renderOrderList();
 }
 
 function setLanguage(language) {
@@ -208,15 +409,45 @@ function cacheNodes() {
   nodes.menuGrid = requireNode('#menu-grid');
   nodes.emptyState = requireNode('#empty-state');
   nodes.resultCount = requireNode('#result-count');
+  nodes.orderListDialog = requireNode('#order-list-dialog');
+  nodes.orderListItems = requireNode('#order-list-items');
+  nodes.orderListTotal = requireNode('#order-list-total');
+  nodes.orderListStatus = requireNode('#order-list-status');
+  nodes.orderListClose = requireNode('#order-list-close');
 }
 
 async function init() {
   cacheNodes();
+  state.orderList = readOrderList();
   state.gridSize = readStoredGridSize();
   menuData = await loadMenuData();
+  state.orderList = reconcileOrderList(state.orderList, getAllItems(menuData));
+  persistOrderList(state.orderList);
   updateStaticCopy();
 
   nodes.searchInput.addEventListener('input', applyFilters);
+  nodes.menuGrid.addEventListener('click', handleMenuOrderClick);
+  nodes.orderListItems.addEventListener('click', handleOrderListClick);
+  nodes.orderListItems.addEventListener('input', handleOrderNoteInput);
+  nodes.orderListClose.addEventListener('click', closeOrderList);
+  nodes.orderListDialog.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeOrderList();
+    }
+  });
+  nodes.orderListDialog.addEventListener('click', (event) => {
+    if (event.target === nodes.orderListDialog) {
+      closeOrderList();
+    }
+  });
+  nodes.orderListDialog.addEventListener('close', () => {
+    orderDialogOpener?.focus();
+    orderDialogOpener = undefined;
+  });
+  document.querySelectorAll('[data-order-list-open]').forEach((button) => {
+    button.addEventListener('click', openOrderList);
+  });
   document.querySelectorAll('[data-language]').forEach((button) => {
     button.addEventListener('click', () => setLanguage(button.dataset.language));
   });
