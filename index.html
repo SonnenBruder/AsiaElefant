@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html class="dark" lang="de">
+<html id="top" class="dark" lang="de">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,17 +10,31 @@
     <meta name="theme-color" content="#131411" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="de_DE" />
-    <meta
-      property="og:title"
-      content="Asia Elefant Schorndorf | Speisekarte"
-    />
+    <meta property="og:title" content="Asia Elefant Schorndorf | Speisekarte" />
     <meta
       property="og:description"
-      content="Bilinguale Speisekarte mit Sushi, Wok-Spezialitaeten, Suche, Kategorien und Telefonbestellung."
+      content="Bilinguale Speisekarte mit Sushi, Asia-Spezialitaeten, Suche, Kategorien und Telefonbestellung."
     />
     <meta name="twitter:card" content="summary" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="src/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="src/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="src/favicon-16x16.png"
+    />
+    <link rel="manifest" href="src/site.webmanifest" />
     <title>Asia Elefant Schorndorf | Speisekarte</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,112 +45,7 @@
       href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              'tertiary-container': '#1c1000',
-              'surface-container-highest': '#343532',
-              secondary: '#e9c176',
-              primary: '#c8c6c5',
-              'on-background': '#e4e2dd',
-              'inverse-primary': '#5f5e5e',
-              'on-secondary-fixed-variant': '#5d4201',
-              'tertiary-fixed': '#ffddb0',
-              'surface-variant': '#343532',
-              'surface-tint': '#c8c6c5',
-              surface: '#131411',
-              'error-container': '#93000a',
-              'on-tertiary-fixed': '#281800',
-              'inverse-on-surface': '#30312e',
-              'surface-container': '#1f201d',
-              'secondary-fixed-dim': '#e9c176',
-              outline: '#8e9192',
-              tertiary: '#e7c08a',
-              'on-secondary-fixed': '#261900',
-              'surface-container-lowest': '#0e0e0c',
-              'primary-container': '#121212',
-              'surface-dim': '#131411',
-              'on-tertiary-fixed-variant': '#5c4217',
-              error: '#ffb4ab',
-              'on-primary-fixed-variant': '#474646',
-              'surface-container-high': '#2a2a27',
-              'on-primary-fixed': '#1c1b1b',
-              'outline-variant': '#444748',
-              'on-secondary-container': '#dab36a',
-              'surface-container-low': '#1b1c19',
-              'inverse-surface': '#e4e2dd',
-              'on-secondary': '#412d00',
-              'on-primary': '#313030',
-              'secondary-fixed': '#ffdea5',
-              'primary-fixed': '#e5e2e1',
-              'on-error-container': '#ffdad6',
-              'on-tertiary-container': '#987848',
-              'tertiary-fixed-dim': '#e7c08a',
-              'secondary-container': '#604403',
-              'primary-fixed-dim': '#c8c6c5',
-              'on-primary-container': '#7e7d7d',
-              'on-error': '#690005',
-              'on-surface': '#e4e2dd',
-              'surface-bright': '#393936',
-              'on-surface-variant': '#c4c7c7',
-              'on-tertiary': '#432c03',
-              background: '#131411',
-            },
-            borderRadius: {
-              DEFAULT: '0.25rem',
-              sm: '0.125rem',
-              md: '0.375rem',
-              lg: '0.5rem',
-              xl: '0.5rem',
-            },
-            spacing: {
-              'section-gap': '80px',
-              'grid-columns': '12',
-              base: '8px',
-              'max-width': '1200px',
-              gutter: '16px',
-              'container-padding': '24px',
-            },
-            fontFamily: {
-              'headline-md': ['Newsreader', 'serif'],
-              'display-lg-mobile': ['Newsreader', 'serif'],
-              'label-md': ['Plus Jakarta Sans', 'sans-serif'],
-              'display-lg': ['Newsreader', 'serif'],
-              'label-sm': ['Plus Jakarta Sans', 'sans-serif'],
-              'body-md': ['Plus Jakarta Sans', 'sans-serif'],
-              'body-lg': ['Plus Jakarta Sans', 'sans-serif'],
-              'headline-sm': ['Newsreader', 'serif'],
-            },
-            fontSize: {
-              'headline-md': ['32px', { lineHeight: '1.3', fontWeight: '500' }],
-              'display-lg-mobile': [
-                '36px',
-                { lineHeight: '1.2', fontWeight: '600' },
-              ],
-              'label-md': [
-                '14px',
-                { lineHeight: '1', letterSpacing: '0', fontWeight: '600' },
-              ],
-              'display-lg': [
-                '48px',
-                { lineHeight: '1.1', letterSpacing: '0', fontWeight: '600' },
-              ],
-              'label-sm': [
-                '12px',
-                { lineHeight: '1', letterSpacing: '0', fontWeight: '500' },
-              ],
-              'body-md': ['16px', { lineHeight: '1.6', fontWeight: '400' }],
-              'body-lg': ['18px', { lineHeight: '1.6', fontWeight: '400' }],
-              'headline-sm': ['24px', { lineHeight: '1.4', fontWeight: '500' }],
-            },
-          },
-        },
-      };
-    </script>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body
     class="elephant-pattern bg-background text-on-surface font-body-md antialiased"
@@ -148,8 +57,7 @@
     >
 
     <header
-      id="top"
-      class="fixed md:sticky top-0 left-0 right-0 z-50 glass-header bg-background/86 border-b border-secondary/15"
+      class="site-header fixed md:sticky top-0 left-0 right-0 z-50 glass-header bg-background/86 border-b border-secondary/15"
     >
       <nav
         class="mx-auto flex h-20 max-w-max-width items-center justify-between px-container-padding"
@@ -163,8 +71,11 @@
           <span
             class="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-secondary/30 bg-secondary/10 font-headline-sm text-xl text-secondary"
             aria-hidden="true"
-            >AE</span
-          >
+            ><img
+              src="src/logo.webp"
+              alt="Asia Elefant Logo"
+              class="h-full w-full object-contain"
+          /></span>
           <span class="min-w-0">
             <span
               class="block truncate font-headline-sm text-headline-sm text-secondary"
@@ -226,6 +137,21 @@
               EN
             </button>
           </div>
+          <button
+            class="order-list-trigger focus-ring hidden min-h-11 items-center gap-2 rounded-md border border-secondary/30 px-3 text-sm font-bold text-secondary md:inline-flex"
+            type="button"
+            data-order-list-open
+          >
+            <span
+              class="material-symbols-outlined text-[20px]"
+              aria-hidden="true"
+              >receipt_long</span
+            >
+            <span data-i18n="navOrderList">Bestellliste</span>
+            <span class="order-count-badge" data-order-list-count hidden
+              >0</span
+            >
+          </button>
           <a
             class="focus-ring hidden items-center gap-2 rounded-md bg-secondary px-4 py-3 text-sm font-extrabold text-on-secondary transition hover:bg-secondary-fixed md:inline-flex"
             href="tel:071814826448"
@@ -244,6 +170,7 @@
             href="tel:071814826448"
             data-phone-action
             aria-label="Anrufen / Call"
+            data-i18n-aria-label="callAriaLabel"
           >
             <span class="material-symbols-outlined" aria-hidden="true"
               >call</span
@@ -254,40 +181,62 @@
     </header>
 
     <main>
-      <section class="border-b border-secondary/10 bg-surface/70">
-        <div
-          class="mx-auto grid max-w-max-width gap-10 px-container-padding py-12 md:grid-cols-[1.08fr_0.92fr] md:py-20 lg:py-24"
-        >
-          <div class="flex flex-col justify-center">
-            <p
-              class="mb-5 font-label-md text-sm font-bold text-secondary"
-              data-i18n="heroKicker"
-            >
-              Asia Elefant Schorndorf
+      <section class="restaurant-hero" aria-labelledby="hero-heading">
+        <picture class="restaurant-hero__media" aria-hidden="true">
+          <img
+            src="src/hero-dish-1800.jpg"
+            alt=""
+            width="1800"
+            height="1009"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+
+        <div class="restaurant-hero__inner">
+          <div class="restaurant-hero__content">
+            <p class="restaurant-hero__kicker" data-i18n="heroKicker">
+              Sushi / Wok / Asiatische Küche
             </p>
             <h1
-              class="max-w-3xl font-display-lg-mobile text-display-lg-mobile text-on-surface md:font-display-lg md:text-display-lg"
+              id="hero-heading"
+              class="restaurant-hero__title"
               data-i18n="heroTitle"
             >
-              Speisekarte
+              Asia Elefant Schorndorf
             </h1>
             <p
-              class="mt-5 max-w-2xl font-body-lg text-body-lg text-on-surface-variant"
-              data-i18n="heroSubtitle"
+              class="restaurant-hero__development-notice"
+              data-i18n="heroTitleSecondary"
             >
-              Sushi, Wok-Spezialitaeten und telefonische Bestellung in einer
-              ruhigen, klaren Restaurantansicht.
+              Derzeit in Entwicklung
+            </p>
+            <p class="restaurant-hero__subtitle" data-i18n="heroSubtitle">
+              Sushi, Wok und asiatische Lieblingsgerichte - frisch zubereitet in
+              Schorndorf.
             </p>
             <p
-              class="mt-3 max-w-2xl text-sm leading-6 text-on-surface-variant"
+              class="restaurant-hero__secondary"
               data-i18n="heroSubtitleSecondary"
             >
-              Menu browsing, search, category filters and click-to-call ordering
-              for local guests.
+              Wähle deine Gerichte in Ruhe aus und bestelle direkt bei uns zur
+              Abholung.
             </p>
-            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+
+            <div class="restaurant-hero__actions">
               <a
-                class="focus-ring inline-flex items-center justify-center gap-2 rounded-md bg-secondary px-5 py-4 text-sm font-extrabold text-on-secondary transition hover:bg-secondary-fixed"
+                class="restaurant-hero__cta restaurant-hero__cta--primary focus-ring"
+                href="#menu"
+              >
+                <span
+                  class="material-symbols-outlined text-[20px]"
+                  aria-hidden="true"
+                  >restaurant_menu</span
+                >
+                <span data-i18n="browseMenu">Speisekarte entdecken</span>
+              </a>
+              <a
+                class="restaurant-hero__cta restaurant-hero__cta--secondary focus-ring"
                 href="tel:071814826448"
                 data-phone-action
                 data-phone-label="hero"
@@ -297,83 +246,25 @@
                   aria-hidden="true"
                   >call</span
                 >
-                <span class="phone-label">Anrufen & bestellen</span>
-              </a>
-              <a
-                class="focus-ring inline-flex items-center justify-center gap-2 rounded-md border border-secondary/35 px-5 py-4 text-sm font-bold text-secondary transition hover:bg-secondary/10"
-                href="#menu"
-              >
-                <span
-                  class="material-symbols-outlined text-[20px]"
-                  aria-hidden="true"
-                  >restaurant_menu</span
-                >
-                <span data-i18n="browseMenu">Speisekarte ansehen</span>
+                <span class="phone-label">Jetzt anrufen</span>
               </a>
             </div>
-          </div>
 
-          <aside
-            class="surface-panel p-5 md:p-6"
-            aria-label="Restaurant Kurzinfo / Restaurant summary"
-          >
-            <div
-              class="dish-placeholder grid min-h-[280px] place-items-center rounded-lg border border-secondary/16 p-6 text-center"
-              role="img"
-              aria-label="Bildplatzhalter fuer Asia Elefant Schorndorf bis freigegebene Restaurantfotos vorliegen"
+            <dl
+              class="restaurant-hero__details"
+              aria-label="Restaurant Kurzinfo / Restaurant summary"
+              data-i18n-aria-label="restaurantSummaryLabel"
             >
-              <div>
-                <span
-                  class="material-symbols-outlined mb-4 block text-5xl text-secondary"
-                  aria-hidden="true"
-                  >restaurant</span
-                >
-                <p
-                  class="font-headline-sm text-headline-sm text-on-surface"
-                  data-i18n="imagePlaceholderTitle"
-                >
-                  Bildplatzhalter
-                </p>
-                <p
-                  class="mt-2 max-w-sm text-sm leading-6 text-on-surface-variant"
-                  data-i18n="imagePlaceholderText"
-                >
-                  Reserviert fuer freigegebene Speisen- und
-                  Restaurantfotografie.
-                </p>
+              <div class="restaurant-hero__detail">
+                <dt data-i18n="phoneLabel">Telefon</dt>
+                <dd data-restaurant-phone>07181 - 4826448</dd>
               </div>
-            </div>
-            <dl class="mt-6 grid gap-4 sm:grid-cols-2">
-              <div class="border-t border-secondary/15 pt-4">
-                <dt
-                  class="text-xs font-bold text-secondary"
-                  data-i18n="phoneLabel"
-                >
-                  Telefon
-                </dt>
-                <dd
-                  class="mt-1 text-sm text-on-surface-variant"
-                  data-restaurant-phone
-                >
-                  07181 - 4826448
-                </dd>
-              </div>
-              <div class="border-t border-secondary/15 pt-4">
-                <dt
-                  class="text-xs font-bold text-secondary"
-                  data-i18n="serviceLabel"
-                >
-                  Service
-                </dt>
-                <dd
-                  class="mt-1 text-sm text-on-surface-variant"
-                  data-i18n="serviceText"
-                >
-                  Anrufen & abholen
-                </dd>
+              <div class="restaurant-hero__detail">
+                <dt data-i18n="serviceLabel">Service</dt>
+                <dd data-i18n="serviceText">Anrufen & abholen</dd>
               </div>
             </dl>
-          </aside>
+          </div>
         </div>
       </section>
 
@@ -416,7 +307,7 @@
         </div>
 
         <div
-          class="sticky top-20 z-30 -mx-container-padding mb-9 border-y border-secondary/10 bg-background/95 px-container-padding py-4 glass-header md:rounded-lg md:border md:border-secondary/15"
+          class="menu-toolbar sticky z-30 -mx-container-padding mb-9 border-y border-secondary/10 bg-background/95 px-container-padding py-4 glass-header md:rounded-lg md:border md:border-secondary/15"
         >
           <div
             class="grid gap-4 lg:grid-cols-[minmax(240px,360px)_1fr] lg:items-center"
@@ -446,12 +337,14 @@
                 class="no-scrollbar hidden gap-3 overflow-x-auto md:flex"
                 role="group"
                 aria-label="Kategorie filtern / Filter categories"
+                data-i18n-aria-label="categoryFilterLabel"
               ></div>
               <div
                 id="mobile-category-filters"
                 class="no-scrollbar flex gap-3 overflow-x-auto md:hidden"
                 role="group"
                 aria-label="Kategorie filtern / Filter categories"
+                data-i18n-aria-label="categoryFilterLabel"
               ></div>
             </div>
           </div>
@@ -462,18 +355,57 @@
           >
             0 Gerichte
           </p>
-          <div class="mt-3 flex flex-wrap items-center gap-2" role="group" aria-label="Rastergroesse / Grid size">
-            <span class="mr-1 text-xs font-bold uppercase text-secondary" data-i18n="gridSizeLabel">Raster</span>
-            <button class="grid-size-button focus-ring inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold" type="button" data-grid-size="compact" aria-controls="menu-grid" aria-pressed="false">
-              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">view_compact</span>
+          <div
+            class="mt-3 flex flex-wrap items-center gap-2"
+            role="group"
+            aria-label="Rastergroesse / Grid size"
+            data-i18n-aria-label="gridSizeGroupLabel"
+          >
+            <span
+              class="mr-1 text-xs font-bold uppercase text-secondary"
+              data-i18n="gridSizeLabel"
+              >Raster</span
+            >
+            <button
+              class="grid-size-button focus-ring inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold"
+              type="button"
+              data-grid-size="compact"
+              aria-controls="menu-grid"
+              aria-pressed="false"
+            >
+              <span
+                class="material-symbols-outlined text-[18px]"
+                aria-hidden="true"
+                >view_compact</span
+              >
               <span data-i18n="gridSizeCompact">Klein</span>
             </button>
-            <button class="grid-size-button focus-ring inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold" type="button" data-grid-size="standard" aria-controls="menu-grid" aria-pressed="true">
-              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">grid_view</span>
+            <button
+              class="grid-size-button focus-ring inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold"
+              type="button"
+              data-grid-size="standard"
+              aria-controls="menu-grid"
+              aria-pressed="true"
+            >
+              <span
+                class="material-symbols-outlined text-[18px]"
+                aria-hidden="true"
+                >grid_view</span
+              >
               <span data-i18n="gridSizeStandard">Mittel</span>
             </button>
-            <button class="grid-size-button focus-ring inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold" type="button" data-grid-size="large" aria-controls="menu-grid" aria-pressed="false">
-              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">view_comfy</span>
+            <button
+              class="grid-size-button focus-ring inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold"
+              type="button"
+              data-grid-size="large"
+              aria-controls="menu-grid"
+              aria-pressed="false"
+            >
+              <span
+                class="material-symbols-outlined text-[18px]"
+                aria-hidden="true"
+                >view_comfy</span
+              >
               <span data-i18n="gridSizeLarge">Gross</span>
             </button>
           </div>
@@ -488,7 +420,10 @@
               Die Speisekarte wird aus strukturierten JSON-Daten gerendert.
               Bitte JavaScript aktivieren oder telefonisch bestellen.
             </p>
-            <a class="focus-ring mt-5 inline-flex rounded-md bg-secondary px-4 py-3 text-sm font-extrabold text-on-secondary" href="tel:071814826448">
+            <a
+              class="focus-ring mt-5 inline-flex rounded-md bg-secondary px-4 py-3 text-sm font-extrabold text-on-secondary"
+              href="tel:071814826448"
+            >
               07181 - 4826448
             </a>
           </div>
@@ -668,23 +603,14 @@
             Telefonkontakt.
           </p>
           <div class="mt-5 flex flex-wrap gap-4 text-sm">
-            <a
-              class="focus-ring rounded-md text-on-surface-variant underline decoration-secondary/40 underline-offset-4 hover:text-secondary"
-              href="#"
-              data-i18n="footerImprint"
-              >Impressum folgt</a
+            <span class="text-on-surface-variant" data-i18n="footerImprint"
+              >Impressum folgt</span
             >
-            <a
-              class="focus-ring rounded-md text-on-surface-variant underline decoration-secondary/40 underline-offset-4 hover:text-secondary"
-              href="#"
-              data-i18n="footerPrivacy"
-              >Datenschutz folgt</a
+            <span class="text-on-surface-variant" data-i18n="footerPrivacy"
+              >Datenschutz folgt</span
             >
-            <a
-              class="focus-ring rounded-md text-on-surface-variant underline decoration-secondary/40 underline-offset-4 hover:text-secondary"
-              href="#"
-              data-i18n="footerAllergens"
-              >Allergene folgen</a
+            <span class="text-on-surface-variant" data-i18n="footerAllergens"
+              >Allergene folgen</span
             >
           </div>
         </div>
@@ -703,7 +629,7 @@
     </footer>
 
     <nav
-      class="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-50 grid h-20 grid-cols-4 border-t border-secondary/15 bg-surface-container-lowest/96 px-2 glass-header md:hidden"
+      class="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-50 grid h-20 grid-cols-5 border-t border-secondary/15 bg-surface-container-lowest/96 px-1 glass-header md:hidden"
       aria-label="Mobile Navigation"
     >
       <a
@@ -724,11 +650,32 @@
           >Speisekarte</span
         >
       </a>
+      <button
+        class="focus-ring relative flex flex-col items-center justify-center gap-1 rounded-md text-on-surface-variant"
+        type="button"
+        data-order-list-open
+      >
+        <span class="relative">
+          <span class="material-symbols-outlined" aria-hidden="true"
+            >receipt_long</span
+          >
+          <span
+            class="order-count-badge order-count-badge--mobile"
+            data-order-list-count
+            hidden
+            >0</span
+          >
+        </span>
+        <span class="text-[11px] font-bold" data-i18n="navOrderList"
+          >Bestellliste</span
+        >
+      </button>
       <a
         class="focus-ring flex flex-col items-center justify-center gap-1 rounded-md text-secondary"
         href="tel:071814826448"
         data-phone-action
         aria-label="Anrufen / Call"
+        data-i18n-aria-label="callAriaLabel"
       >
         <span class="material-symbols-outlined" aria-hidden="true">call</span>
         <span class="text-[11px] font-bold" data-i18n="navCall">Anrufen</span>
@@ -742,6 +689,47 @@
       </a>
     </nav>
 
-    <script src="main.js" defer></script>
+    <dialog
+      id="order-list-dialog"
+      class="order-list-dialog"
+      aria-labelledby="order-list-title"
+    >
+      <section class="order-list-panel">
+        <header class="order-list-header">
+          <div>
+            <p class="text-xs font-bold text-secondary">Asia Elefant</p>
+            <h2
+              id="order-list-title"
+              class="mt-1 font-headline-sm text-2xl text-on-surface"
+              data-i18n="orderListTitle"
+            >
+              Bestellliste
+            </h2>
+          </div>
+          <button
+            id="order-list-close"
+            class="order-icon-button focus-ring"
+            type="button"
+            aria-label="Bestellliste schliessen"
+            data-i18n-aria-label="orderCloseLabel"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >close</span
+            >
+          </button>
+        </header>
+        <div id="order-list-items" class="order-list-content"></div>
+        <footer id="order-list-total" class="order-list-footer"></footer>
+        <p
+          id="order-list-status"
+          class="sr-only"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></p>
+      </section>
+    </dialog>
+
+    <script type="module" src="main.js"></script>
   </body>
 </html>
