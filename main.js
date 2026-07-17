@@ -45,7 +45,6 @@ let orderCopyFeedbackTimer;
 let menuSectionMode;
 let menuScrollSyncFrame;
 let menuToolbarCollapsed = false;
-let menuToolbarUserCollapsed;
 const nodes = {};
 
 function setMenuToolbarCollapsed(collapsed) {
@@ -83,38 +82,21 @@ function syncMenuScrollState() {
   menuScrollSyncFrame = undefined;
   const menuBounds = nodes.menuSection.getBoundingClientRect();
   const headerHeight = nodes.siteHeader.offsetHeight;
-  const menuIsActive =
-    menuBounds.top < window.innerHeight &&
-    menuBounds.bottom > headerHeight;
   const shouldHideHeader =
     menuBounds.top <= 0 && menuBounds.bottom > headerHeight;
 
-  if (shouldHideHeader !== menuSectionMode) {
-    menuSectionMode = shouldHideHeader;
-    document.body.classList.toggle('menu-section-mode', shouldHideHeader);
-    nodes.siteHeader.inert = shouldHideHeader;
+  if (shouldHideHeader === menuSectionMode) {
+    return;
   }
+
+  menuSectionMode = shouldHideHeader;
+  document.body.classList.toggle('menu-section-mode', shouldHideHeader);
+  nodes.siteHeader.inert = shouldHideHeader;
   if (shouldHideHeader) {
     nodes.siteHeader.setAttribute('aria-hidden', 'true');
   } else {
     nodes.siteHeader.removeAttribute('aria-hidden');
   }
-
-  if (!menuIsActive) {
-    menuToolbarUserCollapsed = undefined;
-  }
-
-  const toolbarBounds = nodes.menuToolbar.getBoundingClientRect();
-  const controlsHaveFocus = nodes.menuToolbarControls.contains(
-    document.activeElement,
-  );
-  const shouldAutoCollapse =
-    shouldHideHeader &&
-    !controlsHaveFocus &&
-    nodes.menuGrid.getBoundingClientRect().top <= toolbarBounds.bottom;
-  setMenuToolbarCollapsed(
-    menuToolbarUserCollapsed ?? shouldAutoCollapse,
-  );
 }
 
 function scheduleMenuScrollSync() {
@@ -126,8 +108,7 @@ function scheduleMenuScrollSync() {
 }
 
 function toggleMenuToolbar() {
-  menuToolbarUserCollapsed = !menuToolbarCollapsed;
-  setMenuToolbarCollapsed(menuToolbarUserCollapsed);
+  setMenuToolbarCollapsed(!menuToolbarCollapsed);
 }
 
 function getCopy(key) {
@@ -194,7 +175,6 @@ function renderMenu() {
   nodes.menuGrid.setAttribute('aria-busy', 'false');
   nodes.emptyState.classList.toggle('hidden', visibleCount !== 0);
   updateResultCount(visibleCount, totalCount);
-  scheduleMenuScrollSync();
 }
 
 function getMenuItem(itemId) {
@@ -622,7 +602,6 @@ async function init() {
   updateStaticCopy();
   window.addEventListener('scroll', scheduleMenuScrollSync, { passive: true });
   window.addEventListener('resize', scheduleMenuScrollSync);
-  document.addEventListener('focusin', scheduleMenuScrollSync);
 
   nodes.searchInput.addEventListener('input', applyFilters);
   nodes.menuToolbarToggle.addEventListener('click', toggleMenuToolbar);

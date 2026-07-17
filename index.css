@@ -68,16 +68,12 @@ body {
   will-change: transform;
 }
 
-.menu-toolbar {
-  top: var(--header-height);
-  transition: top 180ms ease;
-}
 body.menu-section-mode .site-header {
   transform: translateY(calc(-100% - 1px));
   pointer-events: none;
 }
 
-body.menu-section-mode .menu-toolbar {
+.menu-toolbar {
   top: 0;
 }
 
