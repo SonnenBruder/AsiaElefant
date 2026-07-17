@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root {
   color-scheme: dark;
   --surface: #131411;
@@ -241,7 +244,6 @@ body {
   .menu-items-grid {
     grid-template-columns: 1fr;
   }
-
 
   .menu-card:hover {
     transform: none;
